@@ -1,6 +1,6 @@
 ---
 title: Overwatch Winston’s “TESLA” gun in UE4
-summary: Tank whose weapon is easily handle with all the healers in the game!
+summary: Archived tutorial for UnrealEngine 4 of Winston's weapon from Overwatch
 date: 2016-07-10
 authors:
   - admin
@@ -14,7 +14,7 @@ Hi everyone!
 3 weeks have passed since I made last tutorial, a little distracted on developing Android stuff, it’s ok, I’ll catch up.
 And today we’ll build with blueprints the Winston’s **TESLA** gun, result is below
 
-{{< youtube id="HF2VEFH_tf0" autoplay="false" >}}
+{{< youtube id="HF2VEFH_tf0" >}}
 
 What I found in [the official wiki](https://overwatch.wikia.com/wiki/Winston):
 

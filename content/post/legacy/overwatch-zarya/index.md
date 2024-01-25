@@ -21,7 +21,7 @@ UE4 version **4.12.3**
 
 ### Logic
 
-Her ultimate, as written above is Graviton Surge(or Bomb), as we know from previous tutorial, bombs are [Projectile](http://iryos-workshop.com/genjiis-ability/). So instead of creating new Blueprint, we’ll just duplicate existing, in this template FirstPersonProjectile, and name it **UltimateProjectile**.
+Her ultimate, as written above is Graviton Surge(or Bomb), as we know from previous tutorial, bombs are [Projectile](/post/legacy/overwatch-genjii). So instead of creating new Blueprint, we’ll just duplicate existing, in this template FirstPersonProjectile, and name it **UltimateProjectile**.
 
 {{< figure src="2.png" width="50%" height="50%" >}}
 
@@ -65,4 +65,4 @@ The last thing is binding ability to **Q** key button. In **FirstPersonCharacter
 {{< figure src="9-1.png" title="In SpawnActor/Class set UltimateProjectile">}}
 
 ### Result
-{{< youtube id="ZReOkcAClAo" autoplay="false" >}}
+{{< youtube id="ZReOkcAClAo" >}}
