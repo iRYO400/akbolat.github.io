@@ -1,22 +1,15 @@
 ---
 title: Uses
-date: 2023-10-24
+date: 2024-01-25
 hide_date: true
 reading_time: false
 ---
 
-The idea of a Uses page is to tell you about the stuff I use.
+I stole this idea from people at [uses.tech](https://uses.tech) 😉. Try yourself
 
-Make sure to check out [uses.tech](https://uses.tech/) for a list of everyone's Uses pages!
+### 💻 Hardware
+- MBP14 M1 PRO
 
-I often get asked about what software or hardware I use, so this page will serve as a living document and a place to point curious readers to when I get asked.
-
-## Editor + Terminal
-
-- [Visual Studio Code](https://code.visualstudio.com/) is my current editor
-- Chrome is my main browser
-- iTerm2 is my terminal
-
-## Desktop Apps
-
-- Better Touch Tool for window management and custom keyboard shortcuts
+### 🚀 Software
+- JetBrains Toolbox - *IntelliJ, Android Studio, Fleet, Rider*
+- Terminal + Homebrew - *Too many things*

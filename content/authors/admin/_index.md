@@ -22,10 +22,10 @@ role: Senior Android Developer
 # Organizations/Affiliations to show in About widget
 organizations:
   - name: ""
-    url: https://www.stanford.edu/
+    url:
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: Self-taught professional developer since 2016, primarily mobile Android.
 
 # Social Networking
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
