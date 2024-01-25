@@ -22,7 +22,7 @@ Link to download –> [Github](https://github.com/getsetgames/Swipe)
 
 {{< figure src="swipe1.png" >}}
 
-Works on 4.9, 4.10. 4.11 versions of UE4.
+Works on **4.9**, **4.10**, **4.11** versions of UE4.
 
 ### Installing
 
