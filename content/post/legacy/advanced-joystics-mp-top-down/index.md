@@ -52,7 +52,7 @@ Set it as in the picture below:
 
     **LookRight** и **LookForward** – are for implementing aiming with Right Stick, and ←, →, ↑, ↓ for debugging.
 
-### Setting up Left Stick
+### Left Stick
 
 Now open TopDownController and make a chain like in the picture below.
 
@@ -64,7 +64,7 @@ Now open TopDownController and make a chain like in the picture below.
     **isValid** – in that case, using for multiplayer debugging.
     **GetForwardVector** и **GetRightVector** – gets directions. We can delete them, and add “90” to X in first AddMovementInput, and “90” to Y in second AddMovementInput.
 
-### Setting up Right Stick
+### Right Stick
 
 Now the hardest one.
 
@@ -117,5 +117,5 @@ Last part is rotating our character.
 
 There we cast to TopDownCharacter and call SetControlRotation.
 
-
+---
 It's a mirror from [WebArchive](https://web.archive.org/web/20190401172509/http://iryos-workshop.com/en/joysticks-mp-top-down-ue4)
