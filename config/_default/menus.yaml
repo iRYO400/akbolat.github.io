@@ -13,3 +13,6 @@ main:
   - name: Uses
     url: uses/
     weight: 3
+  - name: Resources
+    url: links/
+    weight: 4
