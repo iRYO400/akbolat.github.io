@@ -89,7 +89,7 @@ In FirstPersonCharacter, create boolean **isDeflectAvailable** and function **Re
 
 At the beginning of the game, we’ll turn off collision
 
-{{< figure src="genjiiAbil10.1.png" title="New Response = Ignore" class="image-caption" >}}
+{{< figure src="genjiiAbil10.1.png" title="New Response = Ignore" >}}
 
 And when we press “**E**“, ability activates for two seconds(New Response = **Block**), then it turns off for 16 seconds until it reloads(**SetTimerByFunctionName**) as in the original game.
 

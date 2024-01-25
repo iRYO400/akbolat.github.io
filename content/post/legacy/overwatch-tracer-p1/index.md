@@ -65,7 +65,7 @@ Decrement:
 
 Moving:
 
-{{< figure src="tracerFirst4.png" caption="Teleport function integrated in Editor" class="image-caption" >}}
+{{< figure src="tracerFirst4.png" caption="Teleport function integrated in Editor" >}}
 
 Shoot line-trace(**LineTraceByChannel**), that starts from character’s location(**GetActorLocation**) and ends at **Direction** value. Use **Branch** to check if line-trace hits, if true DestLocation of function Teleport is “Location” from HitResult, if False DestLocation is TraceEnd.
 

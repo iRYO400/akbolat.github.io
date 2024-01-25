@@ -53,16 +53,18 @@ There is we use **Sequence**, to call to **Timelines**. First is for moving obje
 If you don’t know what is it Timeline, just google it or watch [YouTube](https://www.youtube.com/results?search_query=timeline+unreal+engine+4).
 Then, prepare two timelines:
 
-{{< figure src="6-2.png" title="First Timeline with Float graph">}}
-{{< figure src="7-2.png" title="Second with Vector graph">}}
+{{< figure src="6-2.png" caption="First Timeline with Float graph">}}
+{{< figure src="7-2.png" caption="Second with Vector graph">}}
 
+
+### VFX
 That’s all the logic. Now will add some cosmetics stuff. Use **M_BlackHole_Fresnel** material for sphere in UltimateProjectile blueprint, to distinguish gravi-bomb. Link to [download](https://www.dropbox.com/s/sbo40m3z703irb6/BlackHole.zip)([Source](https://www.youtube.com/watch?v=IkmDdL7b-4I), and look at comment below, written by [Yoeri -Luos- Vleer](https://www.youtube.com/user/vladderbeest))
 
 {{< figure src="8-2.png" >}}
 
 The last thing is binding ability to **Q** key button. In **FirstPersonCharacter** blueprint:
 
-{{< figure src="9-1.png" title="In SpawnActor/Class set UltimateProjectile">}}
+{{< figure src="9-1.png" caption="In SpawnActor/Class set UltimateProjectile">}}
 
 ### Result
 {{< youtube id="ZReOkcAClAo" >}}
