@@ -14,10 +14,11 @@ Hi everyone!
 
 Welcome to another tutorial about abilities of Overwatch heroes, in this we will make [Zarya’s ultimate](https://overwatch.wikia.com/wiki/Zarya).
 
-### image
+{{< figure src="1.1.png" >}}
 
-Tutorial based on **FirstPersonTemplate**.
-UE4 version **4.12.3**
+Tutorial based on **FirstPersonTemplate**. UE4 version **4.12.3**
+
+~~Link to project –>> Google Drive~~
 
 ### Logic
 
@@ -36,7 +37,7 @@ Create variables:
 - Vector **Height** – is height at which Blackhole spawns. Equal *{0;0;100}*
 - Array Actor **ActorsInBlackhole** – actors, that will be "pulled".
 
-### image 3
+{{< figure src="3.png" >}}
 
 Gravi-bomb explodes in two cases,
 
@@ -44,7 +45,7 @@ Gravi-bomb explodes in two cases,
 - second(from EventHit), if collision triggered, we set isHit to True, increase scale(**SetRelativeScale**) and lift(**SetWorldLocation**)the bomb. Then, create Trace-sphere(**MultiSphereTraceByChannel**) with parameters – Start(coordinates of that blueprint – **GetActorLocation**); End( same as **Start + 1**, else it wouldn’t work), Radius(750 units) and **Draw Debug Type**(**ForDuration**). Results of Trace-sphere we write to an array **ActorsInBlackhole** using **ForEachLoop**. At the end of loop, we call Blackhole custom event.
 Now let’s implement Blackhole event:
 
-### image 5
+{{< figure src="5.png" >}}
 
 There is we use **Sequence**, to call to **Timelines**. First is for moving objects to the center of Blackhole. We iterate an array, for every element set new coordinates(**SetActorLocation**). And second, to make circle around the center, instead of straight.
 

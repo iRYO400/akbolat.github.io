@@ -18,8 +18,7 @@ And today we’ll build with blueprints the Winston’s **TESLA** gun, result is
 
 What I found in [the official wiki](https://overwatch.wikia.com/wiki/Winston):
 
-
-#### image
+{{< figure src="1.1.png" >}}
 
 In addition, the gun can shoot at multiple targets simultaneously.
 
@@ -36,44 +35,41 @@ An array (EObjectTypeQuery) **Objects** – here we store type of actors, those 
 An array (Actor) **ActorsUnderAttack**  – an array of actors, which will take a damage by electric barrage.
 (Name) **Muzzle** – is a name of bone, that placed in the weapon’s muzzle. Value is “Muzzle”
 
-#### image
-
+{{< figure src="2.png" >}}
 
  - (ParticleSystem) **ParticleMjollnir** – particle for the weapon.
 
 Result is
 
-#### image 3
+{{< figure src="3.png" >}}
 
 There is an event **InputActionFire**, that implements shooting logic in the EventGraph. We need it in this tutorial, so take it and put to another place.
 
 In first, I would like to highlight a special block of nodes:
 
-#### image 4 
-*Continuous shooting by pressing button*
+{{< figure src="4.png" caption="Continuous shooting by pressing button" >}}
 
 Here we define start and end coordinates for Multi-Sphere. It creates in front of the character at distance defined by **SpreadRadius** var. The Trace-function(LineTrace, SphereTrace, etc.) will not work, if it has the same start and end coordinates, therefore we add +1
 
-#### image 5
+{{< figure src="5.png" >}}
 
 Then we create the Multi-Sphere, it have inputs such as Start/End, the radius of the sphere and the array of object types, and in the output the **BreakHitResult** array, elements of which we transfer to the our array **ActorUnderAttack** by using **ForEachLoop** and **AddUnique**. AddUniqie is to exclude the case, when several electric barrages aim to a single enemy. At the of ForEachLoop call custom events.
 
-#### image 6
+{{< figure src="6.png" >}}
 
 The whole scene looks like
 
-#### image 7
+{{< figure src="7.png" >}}
 
 Now let’s look at the first case, when electric barrages are aimed:
 
-#### image 8
+{{< figure src="8.png" >}}
 
-In first, we iterate through the **ActorUnderAttack** array, in second call **SpawnEmitterAttached** function(it creates a particle attached to component, bone and to specific coordinates), which receives to the input the particle( **ParticleMjollnir** var), **Sphere** component(placed in the Components panel) and bone’s name( **Muzzle** var). Note, **LocationType** must be ***KeepWorldPosition***. Then to define a target for electric barrage we call **SetBeamTargetPoint** function. At the end of loop clear the array.
+In first, we iterate through the **ActorUnderAttack** array, in second call **SpawnEmitterAttached** function(it creates a particle attached to component, bone and to specific coordinates), which receives to the input the particle(**ParticleMjollnir** var), **Sphere** component(placed in the Components panel) and bone’s name( **Muzzle** var). Note, **LocationType** must be ***KeepWorldPosition***. Then to define a target for electric barrage we call **SetBeamTargetPoint** function. At the end of loop clear the array.
 
 The second case is when the shots are in idle
 
-#### image 9.1
-*LocationType KeepWorldPosition*
+{{< figure src="9.1.png" caption="LocationType KeepWorldPosition">}}
 
 Here we use **LineTraceByChannel**, to make particles react on collision. To simulate chaotic electric barrages use **RandomUnitVectorInConeWithYawAndPitch**. The we create the particles(**SpawnEmitterAttached**). And the target point defines in two cases, first is when trace-line overlapped and second, opposite to the first(End of trace-line).
 
@@ -99,7 +95,7 @@ These particles contain two emitters, we don’t need in the second, so remove i
 
 In the preview you’ll see next
 
-#### image 10
+{{< figure src="1.gif" >}}
 
 Save it, and define it in our **ParticleMjollnir** variable.
 

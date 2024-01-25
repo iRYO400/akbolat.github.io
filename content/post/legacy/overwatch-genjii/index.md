@@ -31,23 +31,23 @@ How did I implement it? By activation ability, we create a flat box collision in
 
 Open **FirstPersonCharacter -> Viewport**, add **BoxCollision** and bind it to **FirstPersonCamera** with next Location and Scale settings. Then set **Projectile** in Collision Presets, it’ll make BoxCollision react only to projectiles.
 
-{{< figure src="genjiiAbil1.png" title="" >}}
+{{< figure src="genjiiAbil1.png" >}}
 
 You should get the following:
 
-{{< figure src="genjiiAbil2.png" title="" >}}
+{{< figure src="genjiiAbil2.png" >}}
 
 Let’s start with Projectile. Open EventGraph and create **OnComponentHit** event, select **BoxCollision**, in the Details/Events panel click at “+” near **OnComponentHit**. Then make the following:
 
-{{< figure src="genjiiAbil3,1.png" title="" >}}
+{{< figure src="genjiiAbil3,1.png" >}}
 
  **OnComponentHit** – event, that activates, when BoxCollision has been hit. Its parameter – **OtherActor**, gives an info about actor that hit BoxCollision. We convert(**GetClass**) and Spawn(SpawnActor) it with new Location and Rotation values in the direction of sight.
 
 Now InstantHit. Create a custom event and name it – DeflectTrace:
 
-### image 4
+{{< figure src="genjiiAbil4.png" >}}
 
-{{< figure src="genjiiAbil4.png" title="Multiplying by 2000, it’s the length of the trace-line. 1 unit = 1 cm." >}}
+{{< figure src="genjiiAbil4.png" caption="Multiplying by 2000, it’s the length of the trace-line. 1 unit = 1 cm." >}}
 
 DeflectTrace shoots **LineTraceByChannel**, in Start parameter gets BoxCollision’s location coordinates, in End parameter gets coordinates of straight forward Vector(**GetForwardVector**) summed with BoxCollision’s.
 
@@ -57,25 +57,25 @@ To simulate shots in the scene, we’ll create a bot, that shoots Projectile and
 
 Place it to the scene.
 
-{{< figure src="genjiiAbil5.png" title="Shoots in Arrow’s direction" >}}
+{{< figure src="genjiiAbil5.png" caption="Shoots in Arrow’s direction" >}}
 
 In EventGraph, create an alternative **EventTick**,
 
-{{< figure src="genjiiAbil6.png" title="" >}}
+{{< figure src="genjiiAbil6.png" >}}
 
 Sequence-**Then 1** – shoots LineTrace
 
-{{< figure src="genjiiAbil7.1.png" title="I’m not sure about this implementation, but it works" >}}
+{{< figure src="genjiiAbil7.1.png" caption="I’m not sure about this implementation, but it works" >}}
 
   LineTrace with random End-coordinates. If it hits anything, we cast to FirstPersonCharacter and if cast was successful call custom event DeflectTrace.
 
 Sequence-**Then 2** – spawns Projectile
 
-{{< figure src="genjiiAbil8.png" title="Set FirstPersonProjectile in Class parameter" >}}
+{{< figure src="genjiiAbil8.png" caption="Set FirstPersonProjectile in Class parameter" >}}
 
 And the last thing, open **FirstPersonProjectile**
 
-{{< figure src="genjiiAbil9.png" title="" >}}
+{{< figure src="genjiiAbil9.png" >}}
 
 Add **DestroyActor** to False(Branch).
 
@@ -85,11 +85,11 @@ That’s all implementation. Next are binding and cooldown.
 
 In FirstPersonCharacter, create boolean **isDeflectAvailable** and function **Reloading**:
 
-{{< figure src="genjiiAbil11.png" title="" >}}
+{{< figure src="genjiiAbil11.png" >}}
 
 At the beginning of the game, we’ll turn off collision
 
-{{< figure src="genjiiAbil10.1.png" title="New Response = Ignore" >}}
+{{< figure src="genjiiAbil10.1.png" caption="New Response = Ignore" >}}
 
 And when we press “**E**“, ability activates for two seconds(New Response = **Block**), then it turns off for 16 seconds until it reloads(**SetTimerByFunctionName**) as in the original game.
 
