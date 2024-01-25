@@ -84,3 +84,6 @@ Ability activates by pressing LeftShift. Function **CanBlink?** checks charges c
 ### Second skill and VFXs
 
 Check [second ability here](/post/legacy/overwatch-tracer-p2/)
+
+---
+It's a mirror from [WebArchive](https://web.archive.org/web/20190314001105/http://iryos-workshop.com/en/overwatch-tracer-skills-p1-ue4/)

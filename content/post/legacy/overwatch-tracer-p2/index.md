@@ -119,3 +119,6 @@ Place PostProcess to EventGraph and set its boolean SetEnabled in two places:
 Now test it. Cheers!
 
 {{< youtube id="u79msvio8lI" >}}
+
+---
+It's a mirror from [WebArchive](https://web.archive.org/web/20190314001105/http://iryos-workshop.com/en/overwatch-tracer-skills-p2-ue4//)

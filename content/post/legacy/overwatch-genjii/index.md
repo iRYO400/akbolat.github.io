@@ -98,3 +98,6 @@ And when we press “**E**“, ability activates for two seconds(New Response = 
 In result you’ll get:
 
 {{< youtube id="jNS9vZpTU8A" >}}
+
+---
+It's a mirror from [WebArchive](https://web.archive.org/web/20190314001105/http://iryos-workshop.com/en/genjiis-ability/)

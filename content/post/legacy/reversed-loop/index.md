@@ -30,3 +30,6 @@ And now **ForEachLoop**:
 {{< figure src="reverseLoops3.png" caption="We use **ForLoop** inside of it, it means, that we can **replace** it with [ForLoopWithDelay](/post/legacy/forloop-withdelay/)" >}}
 
 {{< figure src="reverseLoops4.png" caption="ReversedForEachLoop" >}}
+
+---
+It's a mirror from [WebArchive](https://web.archive.org/web/20190314001105/http://iryos-workshop.com/en/reversed-loop/)

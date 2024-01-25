@@ -68,3 +68,6 @@ The last thing is binding ability to **Q** key button. In **FirstPersonCharacter
 
 ### Result
 {{< youtube id="ZReOkcAClAo" >}}
+
+---
+It's a mirror from [WebArchive](https://web.archive.org/web/20190314001105/http://iryos-workshop.com/en/zarya-ult-ue4/)

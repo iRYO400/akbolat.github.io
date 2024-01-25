@@ -21,7 +21,7 @@ Inside **TopDownController** create new Float var – **FireRate** with 1.0 valu
 
 {{< figure src="firing2.png" >}}
 
-In first, we’ll check a vector length( we did that in prevous [post](post/legacy/advanced-joystics-mp-top-down/), **11b** and **12a** articles).
+In first, we’ll check a vector length( we did that in [prevous post](/post/legacy/advanced-joystics-mp-top-down/), **11b** and **12a** articles).
 If it less than **0.8**, character doesn’t shoot, else we call FlowControl function – **DoOnce**. DoOnce executes ones and then blocks.
 To unblock, it must be re-calle through the Reset (more about DoOnce can be read [here](https://docs.unrealengine.com/latest/INT/Engine/Blueprints/UserGuide/FlowControl/#doonce).)
 

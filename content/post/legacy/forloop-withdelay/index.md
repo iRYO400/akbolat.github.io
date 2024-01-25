@@ -50,3 +50,6 @@ Similarly with other loops. In StandartMacros you can find other loops. Copy the
 For example, While loop:
 
 {{< figure src="forLoopDelay7.png" >}}
+
+---
+It's a mirror from [WebArchive](https://web.archive.org/web/20190402122855/http://iryos-workshop.com/en/forloop-withdelay-ue4/)
