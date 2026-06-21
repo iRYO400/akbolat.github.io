@@ -49,9 +49,7 @@ website: ""
 ---
 
 Hi! I'm Akbolat Sadvakassov, from KZ 🇰🇿
+I'm a Senior Android engineer with 9+ years in fintech and banking, currently working on a large-scale investing product. I like owning features end-to-end and keeping codebases fast and well-tested (Kotlin, Jetpack Compose, MVI). Check out my CV
 
-Professional Software Developer with good problem solving skill and almost 7 years of Android development expertise.
-
-I do technical writing on [Medium](https://medium.com/@iRYO400)
-
-I did UnrealEngine4 tutorials on [YouTube](https://www.youtube.com/@iRYO400/videos) and 3d models for Dota2 on [Steam Workshop](https://steamcommunity.com/id/iRYO400/myworkshopfiles/)
+I write technical notes on [Medium](https://medium.com/@iRYO400) — mostly hard-won Android & Compose snippets.
+I came from 3D art and game dev: UE4 tutorials on [YouTube](https://www.youtube.com/@iRYO400/videos) and 3D models for Dota 2 on [Steam Workshop](https://steamcommunity.com/id/iRYO400/myworkshopfiles/). These days I tinker with my own hobby game in Unity on the side.
