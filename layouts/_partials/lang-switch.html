@@ -1,0 +1,10 @@
+{{- /* Language menu for a translated page. Picking a language is remembered, so the page stops following
+       the browser language (see the redirect in head.html). Works as a plain list of links without JS. */ -}}
+{{- if and .IsTranslated (ne .Kind "404") }}
+<details class="lang"><summary aria-label="{{ T "language" }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-9 9h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3Z"/></svg><span class="lang__full">{{ .Language.Label }}</span><span class="lang__short">{{ upper .Language.Name }}</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 9 6 6 6-6"/></svg></summary>
+<ul>{{ range .AllTranslations }}<li><a href="{{ .RelPermalink }}" hreflang="{{ .Language.Name }}" lang="{{ .Language.Name }}" data-lang="{{ .Language.Name }}"{{ if eq .Language.Name $.Language.Name }} aria-current="page"{{ end }}>{{ .Language.Label }}</a></li>{{ end }}</ul></details>
+<script>(function(){var d=document.currentScript.previousElementSibling;
+d.addEventListener('click',function(e){var a=e.target.closest('a[data-lang]');if(a){try{localStorage.setItem('lang',a.dataset.lang)}catch(_){}}});
+document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus()}});})();</script>
+{{- end }}

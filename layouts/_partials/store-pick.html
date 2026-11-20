@@ -5,5 +5,5 @@ var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPo
 var os=ios?'ios':/Android/i.test(ua)?'android':'';if(!os)return;
 document.querySelectorAll('.ctas').forEach(function(box){var mine=box.querySelector('[data-os="'+os+'"]');if(!mine)return;
 box.prepend(mine);box.querySelectorAll('[data-os]').forEach(function(b){if(b!==mine)b.classList.add('btn--other')});
-var hint=box.parentNode.querySelector('.os-hint');if(hint){hint.textContent=(ios?'You are on iOS, so the App Store comes first.':'You are on Android, so Google Play comes first.');hint.hidden=false}});
+var hint=box.parentNode.querySelector('.os-hint');if(hint&&hint.dataset[os]){hint.textContent=hint.dataset[os];hint.hidden=false}});
 })();</script>

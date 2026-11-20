@@ -1,0 +1,24 @@
+# Strings of the landing template. Page text lives in each page's front matter.
+projects: Projekte
+language: Sprache
+help: Hilfe
+gp_small: Jetzt bei
+as_small: Laden im
+hint_ios: Du bist auf iOS, daher steht der App Store vorn.
+hint_android: Du bist auf Android, daher steht Google Play vorn.
+privacy: Datenschutz
+support: Support
+delete_data: Daten löschen
+made_by: Entwickelt von Akbolat Sadvakassov
+stack: Gebaut mit
+doc_anchor: ""
+r_common: Gewöhnlich
+r_rare: Selten
+r_epic: Episch
+r_legendary: Legendär
+cls_pistol: Pistole
+cls_smg: Maschinenpistole
+cls_rifle: Sturmgewehr
+cls_sniper: Scharfschützengewehr
+cls_shotgun: Schrotflinte
+cls_heavy: Maschinengewehr

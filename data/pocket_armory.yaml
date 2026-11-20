@@ -1,0 +1,25 @@
+# The chest strip on the Pocket Armory landing (layouts/_partials/loot.html).
+# Guns are renders from the purchased Cartoon Weapons pack, files in assets/images/guns/. The landing shows
+# no gun names: the pack's names echo real models. cls picks the label from i18n (cls_<cls>).
+pool:
+  - {id: pistol6, cls: pistol}
+  - {id: ar9, cls: rifle}
+  - {id: shotgun2, cls: shotgun}
+  - {id: sr2, cls: sniper}
+  - {id: smg6, cls: smg}
+  - {id: mg2, cls: heavy}
+  - {id: pistol3, cls: pistol}
+  - {id: ar1, cls: rifle}
+  - {id: shotgun6, cls: shotgun}
+  - {id: smg12, cls: smg}
+
+# Weights for the show, in percent. They lean toward the rare end on purpose; the game's odds are stingier.
+rarities:
+  - {key: common, weight: 48}
+  - {key: rare, weight: 30}
+  - {key: epic, weight: 15}
+  - {key: legendary, weight: 7}
+
+# Rarity of each slot the page opens with; the middle one is the first landing. Slot k shows gun 7k mod 10,
+# so the first ten slots show every gun once and no gun sits next to itself.
+start: [0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 2, 0, 1, 0, 0]

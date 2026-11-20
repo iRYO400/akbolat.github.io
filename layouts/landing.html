@@ -1,37 +1,31 @@
 {{ define "main" }}
-<div class="by"><div class="wrap"><a href="/">← Akbolat Sadvakassov</a><span class="sep">/</span><a href="/#projects">Projects</a></div></div>
-<header class="hero"><div class="wrap">
+{{- $doc := T "doc_anchor" }}
+<div class="by"><div class="wrap"><a href="/">← Akbolat Sadvakassov</a><span class="sep">/</span><a href="/#projects">{{ T "projects" }}</a>{{ partial "lang-switch.html" . }}</div></div>
+<header class="hero"><div class="stage" aria-hidden="true"><div class="stage__floor"></div></div><div class="wrap">
   <div class="copy">
-    <div class="app-id">{{ with resources.Get .Params.icon }}<img src="{{ .RelPermalink }}" alt="" width="64" height="64">{{ end }}<p class="kind">{{ .Params.kind }}</p></div>
+    <div class="app-id">{{ with resources.Get .Params.icon }}<img src="{{ .RelPermalink }}" alt="" width="64" height="64">{{ end }}{{/* lang="en": Turkish capitals would turn the platform names into İOS and ANDROİD */}}<p class="kind">{{ .Params.kind }} · <span lang="en">iOS · Android</span></p></div>
     <h1>{{ .Title }}{{ with .Params.tagline }}<small>{{ . }}</small>{{ end }}</h1>
     <p class="pitch">{{ .Params.pitch }}</p>
     <div class="ctas">
-      <a class="btn btn--solid" data-os="android" href="{{ .Params.play_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.2v17.6L20 12z" fill="currentColor"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
-      <a class="btn btn--solid" data-os="ios" href="{{ .Params.app_store_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 3.6 21.2h3.2l1.7-3.9h7l1.7 3.9h3.2L12 2.8Zm-2.3 11.7L12 9.2l2.3 5.3H9.7Z" fill="currentColor"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+      <a class="btn btn--solid" data-os="android" href="{{ .Params.play_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.2v17.6L20 12z" fill="currentColor"/></svg><span><small>{{ T "gp_small" }}</small><b>Google Play</b></span></a>
+      <a class="btn btn--solid" data-os="ios" href="{{ .Params.app_store_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 3.6 21.2h3.2l1.7-3.9h7l1.7 3.9h3.2L12 2.8Zm-2.3 11.7L12 9.2l2.3 5.3H9.7Z" fill="currentColor"/></svg><span><small>{{ T "as_small" }}</small><b>App Store</b></span></a>
     </div>
-    <p class="os-hint" hidden></p><p class="status">{{ .Params.status_line }}</p>
+    <p class="os-hint" hidden data-ios="{{ T "hint_ios" }}" data-android="{{ T "hint_android" }}"></p>
   </div>
   <div class="visual"><div class="duo">
     {{- range .Params.hero_screens }}{{ $alt := .alt }}{{ with resources.Get .img }}<div class="phone"><img src="{{ .RelPermalink }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}"></div>{{ end }}{{ end -}}
   </div></div>
 </div></header>
-<section class="facts" aria-label="In numbers"><div class="wrap"><dl style="--n:{{ len .Params.facts }}">
-  {{- range .Params.facts }}<div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end -}}
-</dl></div></section>
-<section class="sec"><div class="wrap"><h2>What it looks like</h2>
-  {{ with .Params.screens_lede }}<p class="sec-lede">{{ . }}</p>{{ end }}
-  <ul class="screens">
-  {{- range .Params.screens }}{{ $cap := .caption }}{{ with resources.Get .img }}<li><figure><div class="phone"><img src="{{ .RelPermalink }}" alt="{{ $cap }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy"></div><figcaption>{{ $cap }}</figcaption></figure></li>{{ end }}{{ end -}}
-  </ul></div></section>
-<section class="sec"><div class="wrap"><h2>What’s inside</h2><div class="feats">
-  {{- range .Params.features }}<div class="feat"><p class="k">{{ .k }}</p><h3>{{ .title }}</h3><p>{{ .text }}</p></div>{{ end -}}
+{{ with .Params.loot }}{{ partial "loot.html" $ }}{{ end }}
+<section class="sec"><div class="wrap"><h2>{{ T "help" }}</h2><div class="help">
+  {{- range .Params.help }}<div><h3>{{ .title }}</h3><p>{{ .text }}</p>{{ with .address }}<a class="go" href="mailto:{{ . }}">{{ . }}</a>{{ end }}{{ $lt := .link_text }}{{ with .link }}<a class="go" href="{{ . }}">{{ $lt }} →</a>{{ end }}</div>{{ end -}}
 </div></div></section>
-{{- with .Params.split }}
-<section class="sec"><div class="wrap split"><h2>{{ .title }}</h2><div class="body">{{ range .paragraphs }}<p>{{ . }}</p>{{ end }}</div></div></section>
+{{- with .Params.stack }}
+<section class="sec sec--stack"><div class="wrap"><h2>{{ T "stack" }}</h2><ul class="stack">
+  {{- range . }}<li><b>{{ .name }}</b><span>{{ .text }}</span></li>{{ end -}}
+</ul></div></section>
 {{- end }}
-<section class="sec"><div class="wrap"><h2>Help</h2><div class="help">
-  {{- range .Params.help }}<div><h3>{{ .title }}</h3><p>{{ .text }}</p>{{ with .address }}<span class="addr">{{ . }}</span>{{ end }}{{ $lt := .link_text }}{{ with .link }}<a class="go" href="{{ . }}">{{ $lt }} →</a>{{ end }}</div>{{ end -}}
-</div></div></section>
-<footer class="foot"><div class="wrap"><span>{{ .Title }} · © {{ now.Year }} Akbolat Sadvakassov · <a href="/pocket-armory/privacy/">Privacy</a> · <a href="/pocket-armory/support/">Support</a> · <a href="/pocket-armory/delete-data/">Delete data</a></span><a href="/">Made by Akbolat Sadvakassov →</a></div></footer>
+<footer class="foot"><div class="wrap"><span>{{ .Title }} · © {{ now.Year }} Akbolat Sadvakassov · <a href="/pocket-armory/privacy/{{ $doc }}">{{ T "privacy" }}</a> · <a href="/pocket-armory/support/{{ $doc }}">{{ T "support" }}</a> · <a href="/pocket-armory/delete-data/{{ $doc }}">{{ T "delete_data" }}</a></span><a href="/">{{ T "made_by" }} →</a></div></footer>
 {{ partial "store-pick.html" . }}
+{{ partial "hero-parallax.html" . }}
 {{ end }}

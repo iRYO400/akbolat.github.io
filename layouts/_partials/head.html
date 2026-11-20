@@ -9,6 +9,21 @@
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
+{{- if and .IsTranslated (ne .Kind "404") }}
+{{- $default := index .AllTranslations 0 }}
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Name }}" href="{{ .Permalink }}">
+{{- end }}
+<link rel="alternate" hreflang="x-default" href="{{ $default.Permalink }}">
+{{- /* Only the default-language address follows the visitor: a remembered pick first, then the browser's
+       languages in order. An explicit /ru/… link always opens as is, and so do crawlers on either URL. */ -}}
+{{- if eq .RelPermalink $default.RelPermalink }}
+{{- $map := dict }}{{ range .AllTranslations }}{{ $map = merge $map (dict .Language.Name .RelPermalink) }}{{ end }}
+<script>(function(){var m={{ $map }},c;try{c=localStorage.getItem('lang')}catch(e){}
+if(!m[c]){c=null;var l=navigator.languages||[navigator.language||''];for(var i=0;i<l.length&&!c;i++){var k=String(l[i]).slice(0,2).toLowerCase();if(m[k])c=k}}
+if(c&&m[c]!==location.pathname)location.replace(m[c]+location.search+location.hash);})();</script>
+{{- end }}
+{{- end }}
 <meta name="color-scheme" content="{{ if $isLanding }}dark{{ else }}light dark{{ end }}">
 {{- if $isLanding }}
 <meta name="theme-color" content="#0a1c33">

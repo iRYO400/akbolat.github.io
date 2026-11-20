@@ -1,8 +1,19 @@
 # Akbolat's Workshop: plain Hugo, no theme and no modules (layouts/ and assets/ live in this repo).
 baseURL: 'https://sadvakassov.com/'
 title: Akbolat's Workshop
-locale: en-us
 defaultContentLanguage: en
+disableDefaultLanguageRedirect: true   # no /en/ alias pages
+# English lives at the root. The other languages exist only for the Pocket Armory landing (/ru/pocket-armory/,
+# /es/pocket-armory/ and so on); content/_index.<lang>.md keeps them from rendering a home page of their own.
+# Landing languages follow the game's.
+languages:
+  en: {locale: en-us, label: English, weight: 1}
+  ru: {locale: ru-ru, label: Русский, weight: 2, disableKinds: [taxonomy, term, 404, robotstxt]}
+  es: {locale: es, label: Español, weight: 3, disableKinds: [taxonomy, term, 404, robotstxt]}
+  pt: {locale: pt-br, label: Português (Brasil), weight: 4, disableKinds: [taxonomy, term, 404, robotstxt]}
+  de: {locale: de-de, label: Deutsch, weight: 5, disableKinds: [taxonomy, term, 404, robotstxt]}
+  fr: {locale: fr-fr, label: Français, weight: 6, disableKinds: [taxonomy, term, 404, robotstxt]}
+  tr: {locale: tr-tr, label: Türkçe, weight: 7, disableKinds: [taxonomy, term, 404, robotstxt]}
 enableRobotsTXT: true
 enableEmoji: true
 summaryLength: 30
@@ -29,6 +40,11 @@ imaging:
     quality: 85
 
 markup:
+  goldmark:
+    # Multilingual mode turns on Hugo's own link and image hooks, which rewrite links inside posts.
+    renderHooks:
+      link: {useEmbedded: never}
+      image: {useEmbedded: never}
   highlight:
     codeFences: true
     noClasses: false   # Chroma colours come from assets/css/chroma-*.css

@@ -1,0 +1,24 @@
+# Strings of the landing template. Page text lives in each page's front matter.
+projects: Projeler
+language: Dil
+help: Yardım
+gp_small: Hemen indir
+as_small: Hemen indir
+hint_ios: iOS kullanıyorsun, bu yüzden App Store başta.
+hint_android: Android kullanıyorsun, bu yüzden Google Play başta.
+privacy: Gizlilik
+support: Destek
+delete_data: Verileri sil
+made_by: Akbolat Sadvakassov tarafından yapıldı
+stack: Kullanılan teknolojiler
+doc_anchor: ""
+r_common: Yaygın
+r_rare: Nadir
+r_epic: Epik
+r_legendary: Efsanevi
+cls_pistol: Tabanca
+cls_smg: Hafif makineli
+cls_rifle: Tüfek
+cls_sniper: Keskin nişancı tüfeği
+cls_shotgun: Pompalı
+cls_heavy: Makineli tüfek

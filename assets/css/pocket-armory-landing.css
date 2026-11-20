@@ -1,10 +1,92 @@
-/* Pocket Armory landing: theme tokens and page-specific art (the landing will be redesigned later). */
+/* Pocket Armory landing: theme tokens and page-specific art. Headings use Russo One, the game's own face;
+   text is Rubik. */
 :root{--l-bg:#0e2440;--l-surface:#153358;--l-ink:#f3f7fc;--l-muted:#a9bed7;--l-line:#21446b;--l-line-strong:#4a77a6;
 --l-accent:#ffc83d;--l-title:#ffc83d;--l-display:"Russo One",Impact,sans-serif;--l-display-weight:400;--l-body:"Rubik",system-ui,sans-serif;--l-track:.005em;
 --l-hero:linear-gradient(180deg,#4a90cb 0%,#2f72ad 52%,#1b4f86 100%);--l-hero-ink:#fff;--l-hero-muted:#d7e7f7;--l-hero-line:rgb(255 255 255 / .55);
 --l-btn:#071526;--l-btn-ink:#fff;--l-radius:14px;--l-bar:#0a1c33;--l-bar-ink:#a9bed7;color-scheme:dark;}
 .hero h1{text-transform:uppercase;text-shadow:0 .06em 0 #0b2a4a,0 .14em .4em rgb(0 0 0 / .3)}
-.hero::before{content:"";position:absolute;left:-40%;right:-40%;bottom:-8%;height:60%;pointer-events:none;
+/* the game's stage: a lit cyclorama with a floor grid and the soft halo seen behind the chest.
+   Scrolling rolls the floor toward you; the halo drifts slower than the phones (see hero-parallax.html). */
+.stage__floor{position:absolute;left:-50%;right:-50%;bottom:-10%;height:64%;
 background-image:linear-gradient(rgb(255 255 255 / .26) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255 / .26) 1px,transparent 1px);
-background-size:72px 72px;transform:perspective(420px) rotateX(64deg);transform-origin:50% 100%;
+background-size:72px 72px;background-position:calc(50% + var(--mx) * -36px) calc(var(--p) * 432px);
+transform:perspective(420px) rotateX(64deg);transform-origin:50% 100%;
 -webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%)}
+.visual::before{left:50%;top:44%;width:130%;aspect-ratio:1.45;border-radius:50%;filter:blur(5px);
+translate:calc(-50% + var(--mx) * -8px) calc(-50% + var(--p) * 70px + var(--my) * -4px);
+background:radial-gradient(closest-side,transparent 70%,rgb(255 255 255 / .34) 80%,rgb(255 255 255 / .1) 88%,transparent 96%);
+-webkit-mask-image:linear-gradient(#000 40%,transparent 72%);mask-image:linear-gradient(#000 40%,transparent 72%)}
+
+/* ---- the chest strip and what you do with the gun (layouts/_partials/loot.html) ----
+   Two colours per rarity, both the game's own: --rc for frames and badges (the interface's, RarityUi.kt) and
+   --rb for the card behind the landed gun (the 3D scene's backdrop, reveal.json palette.byRarity, in sRGB).
+   --rb is registered as a colour so the card fades from one rarity to the next instead of jumping. */
+@property --rb { syntax: "<color>"; inherits: true; initial-value: #2695f2; }
+.loot [data-r=common] { --rc: #f4f8fc; --rb: #bac0ca; }
+.loot [data-r=rare] { --rc: #35c4e8; --rb: #2695f2; }
+.loot [data-r=epic] { --rc: #9d6bff; --rb: #b54be1; }
+.loot [data-r=legendary] { --rc: #ffb020; --rb: #ff9900; }
+
+.loot__strip { position: relative; }
+/* --sw and --sg size the slots; the track starts with its middle slot (of 15) under the marker */
+.strip { --sw: 150px; --sg: 12px; position: relative; height: 120px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.track { position: absolute; left: 50%; top: 10px; bottom: 10px; display: flex; gap: var(--sg);
+  transform: translateX(calc(-7.5 * var(--sw) - 7 * var(--sg))); will-change: transform; }
+.slot { position: relative; flex: 0 0 var(--sw); border: 2px solid var(--rc); border-radius: 12px;
+  background: linear-gradient(#0a1830, #132c50); box-shadow: inset 0 0 24px color-mix(in srgb, var(--rc) 28%, transparent);
+  transition: scale .25s, box-shadow .25s; }
+.slot img { position: absolute; inset: 10px 12px; width: calc(100% - 24px); height: calc(100% - 20px); object-fit: contain; }
+.slot.win { scale: 1.08; box-shadow: 0 0 0 2px var(--rc), 0 0 30px color-mix(in srgb, var(--rc) 65%, transparent), inset 0 0 24px color-mix(in srgb, var(--rc) 40%, transparent); }
+.mark { position: absolute; left: 50%; top: -4px; bottom: -4px; width: 4px; margin-left: -2px; border-radius: 2px; background: var(--l-accent); box-shadow: 0 0 14px var(--l-accent); }
+.mark::before, .mark::after { content: ""; position: absolute; left: 50%; margin-left: -8px; border: 8px solid transparent; }
+.mark::before { top: -6px; border-top-color: var(--l-accent); }
+.mark::after { bottom: -6px; border-bottom-color: var(--l-accent); }
+
+.loot__deal { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 12px; margin-top: 20px; }
+/* the landed gun: the whole card takes the rarity's colour, with slow rays behind the gun.
+   The rays are a square twice the card's width that fades out well inside its own edge, so turning it never
+   shows a corner. */
+.drop { position: relative; isolation: isolate; overflow: hidden; margin: 0; min-height: 300px; padding: 64px 16px 24px;
+  display: grid; place-items: center; border-radius: var(--l-radius);
+  background: radial-gradient(ellipse at 50% 60%, color-mix(in oklch, var(--rb) 70%, #fff) 0%, var(--rb) 38%, color-mix(in oklch, var(--rb) 52%, #000) 100%);
+  transition: --rb .5s ease; }
+.drop__rays { position: absolute; z-index: -1; left: 50%; top: 60%; width: 200%; aspect-ratio: 1; translate: -50% -50%;
+  background: repeating-conic-gradient(rgb(255 255 255 / .16) 0 6deg, transparent 6deg 18deg);
+  -webkit-mask-image: radial-gradient(closest-side, #000 12%, transparent 70%); mask-image: radial-gradient(closest-side, #000 12%, transparent 70%);
+  animation: loot-rays 48s linear infinite paused; }
+.loot.is-live .drop__rays { animation-play-state: running; }
+@keyframes loot-rays { to { rotate: 1turn; } }
+.drop__gun { position: relative; width: auto; height: auto; max-width: min(84%, 440px); max-height: 210px; filter: drop-shadow(0 16px 14px rgb(0 0 0 / .4)); }
+.drop__gun.pop { animation: loot-pop .55s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes loot-pop { from { scale: .7; opacity: .2; } }
+.drop figcaption { position: absolute; left: 18px; right: 18px; top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.drop .new { flex: 0 0 100%; font: 400 1.3rem/1 var(--l-display); color: #fff; text-shadow: 0 2px 0 rgb(0 0 0 / .35); }
+.drop .rar { display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px 4px 9px; border-radius: 999px; background: rgb(6 18 36 / .72);
+  color: #fff; font: 600 11.5px/1.3 var(--l-body); letter-spacing: .12em; text-transform: uppercase; }
+.drop .rar::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--rc); box-shadow: 0 0 8px var(--rc); }
+.drop .cls { color: #fff; font-size: 14px; text-shadow: 0 1px 3px rgb(0 0 0 / .6); }
+
+.fork { display: grid; gap: 12px; align-content: start; }
+.path { position: relative; padding: 16px 18px 16px 60px; border-radius: var(--l-radius); background: var(--l-surface); }
+.path svg { position: absolute; left: 18px; top: 17px; width: 26px; height: 26px; fill: none; stroke: var(--l-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.path h3 { margin: 0; font: 400 1.15rem/1.2 var(--l-display); }
+.path p { margin: 4px 0 0; color: var(--l-muted); font-size: 15px; line-height: 1.5; }
+
+.loopback { display: flex; gap: 12px; align-items: center; margin: 12px 0 0; padding: 14px 18px; border-radius: var(--l-radius);
+  border: 1.5px dashed rgb(255 200 61 / .45); color: var(--l-muted); font-size: 15px; line-height: 1.5; }
+.loopback b { color: var(--l-ink); font-weight: 500; }
+.coin { flex: none; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff5c4, #ffc83d 46%, #d98e0b);
+  box-shadow: 0 0 14px rgb(255 200 61 / .65), inset 0 -2px 0 rgb(0 0 0 / .18); }
+
+@media (max-width: 820px) {
+  .loot__deal { grid-template-columns: minmax(0, 1fr); }
+  .drop { min-height: 240px; }
+  .drop__gun { max-height: 150px; }
+  .strip { --sw: 116px; height: 100px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drop__rays, .drop__gun.pop { animation: none; }
+  .slot, .drop { transition: none; }
+}
