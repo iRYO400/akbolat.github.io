@@ -1,0 +1,102 @@
+/* Landing template. Layout is shared; every colour and the two brand faces come from tokens the page sets
+   on :root (--l-*). The thin frame (top bar, meta lines, footer) keeps the portfolio's mono face so every
+   landing reads as part of the same site. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--l-bg); color: var(--l-ink); font: 400 17px/1.6 var(--l-body); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--l-accent); outline-offset: 4px; border-radius: 4px; }
+:root { --l-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* frame: back to the portfolio */
+.by { border-bottom: 1px solid var(--l-line); font: 500 12.5px/1 var(--l-mono); background: var(--l-bar, var(--l-bg)); position: relative; z-index: 2; }
+.by .wrap { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; padding-block: 14px; }
+.by a { color: var(--l-bar-ink, var(--l-muted)); text-decoration: none; }
+.by a:hover { color: var(--l-ink); }
+.by .sep { color: var(--l-bar-ink, var(--l-muted)); opacity: .6; }
+
+/* hero */
+.hero { position: relative; overflow: hidden; background: var(--l-hero, var(--l-bg)); color: var(--l-hero-ink, var(--l-ink)); }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px 56px; align-items: center; padding-block: 72px 88px; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 40px 56px; } }
+.app-id { display: flex; align-items: center; gap: 14px; }
+.app-id img { width: 64px; height: 64px; border-radius: 15px; box-shadow: 0 10px 24px rgb(0 0 0 / .3); }
+.kind { margin: 0; font: 500 12px/1.4 var(--l-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--l-hero-muted, var(--l-muted)); }
+.hero h1 { margin: 22px 0 0; font-family: var(--l-display); font-weight: var(--l-display-weight, 700); font-stretch: var(--l-display-stretch, 100%); font-size: clamp(2.7rem, 6.4vw, 5rem); line-height: .94; letter-spacing: var(--l-track, -.015em); color: var(--l-title, inherit); text-wrap: balance; }
+.hero h1 small { display: block; margin-top: .35em; font-size: .3em; letter-spacing: .22em; line-height: 1.2; color: var(--l-hero-ink, var(--l-ink)); }
+.pitch { margin: 22px 0 0; max-width: 30em; font-size: clamp(1.15rem, 1.8vw, 1.38rem); line-height: 1.42; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 12px; min-height: 54px; padding: 8px 20px 8px 16px; border-radius: var(--l-radius, 12px); text-decoration: none; transition: translate .2s ease, box-shadow .2s ease; }
+.btn:hover { translate: 0 -2px; box-shadow: 0 10px 22px rgb(0 0 0 / .22); }
+.btn svg { width: 24px; height: 24px; flex: none; }
+.btn span { display: flex; flex-direction: column; line-height: 1.1; }
+.btn small { font-size: 10.5px; font-weight: 500; opacity: .8; letter-spacing: .02em; }
+.btn b { font-size: 17px; font-weight: 600; }
+.btn--solid { background: var(--l-btn, #000); color: var(--l-btn-ink, #fff); }
+.btn--ghost { border: 1.5px solid var(--l-hero-line, var(--l-line-strong)); color: var(--l-hero-ink, var(--l-ink)); padding-inline: 20px; }
+.btn--ghost b { font-size: 15.5px; }
+.status { margin: 16px 0 0; font: 500 12.5px/1.5 var(--l-mono); color: var(--l-hero-muted, var(--l-muted)); }
+
+.visual { position: relative; min-width: 0; }
+
+/* phones */
+.phone { position: relative; border-radius: 28px; padding: 6px; background: #091018; box-shadow: 0 30px 60px -24px rgb(0 0 0 / .6), inset 0 0 0 1px rgb(255 255 255 / .08); }
+.phone img { display: block; width: 100%; height: auto; aspect-ratio: 720 / 1566; object-fit: cover; border-radius: 22px; }
+.duo { position: relative; width: min(100%, 440px); margin-inline: auto; aspect-ratio: 1 / 1.12; }
+.duo .phone { position: absolute; width: 56%; }
+.duo .phone:first-child { left: 2%; top: 4%; rotate: -5deg; z-index: 2; }
+.duo .phone:last-child { right: 2%; top: 0; rotate: 6deg; }
+
+/* facts */
+.facts .wrap { padding-block: 0; }
+.facts dl { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--l-line); border-block: 1px solid var(--l-line); }
+@media (min-width: 860px) { .facts dl { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } }
+.facts div { background: var(--l-bg); padding: 22px 18px; display: flex; flex-direction: column-reverse; gap: 6px; }
+.facts dd { margin: 0; font-family: var(--l-display); font-weight: var(--l-display-weight, 700); font-stretch: var(--l-display-stretch, 100%); font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1; color: var(--l-accent); font-variant-numeric: tabular-nums; }
+.facts dt { font: 500 12px/1.4 var(--l-mono); color: var(--l-muted); letter-spacing: .03em; }
+
+/* sections */
+.sec { padding-block: clamp(56px, 8vw, 104px); }
+.sec + .sec { padding-top: 0; }
+.sec h2 { margin: 0 0 28px; font-family: var(--l-display); font-weight: var(--l-display-weight, 700); font-stretch: var(--l-display-stretch, 100%); font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.04; letter-spacing: var(--l-track, -.015em); text-wrap: balance; }
+.sec-lede { margin: -14px 0 28px; max-width: 36em; color: var(--l-muted); }
+
+.screens { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 2px 18px; margin: 0; list-style: none; }
+.screens li { flex: 0 0 auto; width: clamp(160px, 17.5vw, 200px); scroll-snap-align: start; }
+.screens figure { margin: 0; }
+.screens figcaption { margin-top: 12px; font: 500 12.5px/1.4 var(--l-mono); color: var(--l-muted); }
+
+.feats { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 640px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 980px) { .feats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.feat { background: var(--l-surface); border-radius: var(--l-radius, 12px); padding: 24px 24px 26px; }
+.feat .k { margin: 0; font: 500 11.5px/1.4 var(--l-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--l-accent); }
+.feat h3 { margin: 10px 0 0; font-family: var(--l-display); font-weight: var(--l-display-weight, 700); font-stretch: var(--l-display-stretch, 100%); font-size: 1.25rem; line-height: 1.15; }
+.feat p { margin: 8px 0 0; color: var(--l-muted); font-size: 15.5px; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px 56px; }
+@media (min-width: 860px) { .split { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); } }
+.split h2 { margin: 0; }
+.split .body p { margin: 0 0 14px; font-size: 1.08rem; }
+.split .body p:last-child { margin-bottom: 0; }
+
+
+.help { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 760px) { .help { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.help > div { border: 1px solid var(--l-line); border-radius: var(--l-radius, 12px); padding: 24px; }
+.help h3 { margin: 0; font-family: var(--l-display); font-weight: var(--l-display-weight, 700); font-stretch: var(--l-display-stretch, 100%); font-size: 1.2rem; }
+.help p { margin: 8px 0 0; color: var(--l-muted); }
+.help .addr { display: inline-block; margin-top: 12px; font: 500 14px/1.4 var(--l-mono); color: var(--l-ink); user-select: all; }
+.help a.go { display: inline-block; margin-top: 12px; font: 500 14px/1.4 var(--l-mono); color: var(--l-ink); text-underline-offset: 4px; }
+
+.foot { border-top: 1px solid var(--l-line); }
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 26px 40px; font: 500 12.5px/1.6 var(--l-mono); color: var(--l-muted); }
+
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+/* store buttons after the platform check: the visitor's store stays solid, the other one goes quiet */
+.btn--other { background: transparent; color: var(--l-hero-ink, var(--l-ink)); box-shadow: inset 0 0 0 1.5px var(--l-hero-line, var(--l-line-strong)); }
+.os-hint { margin: 14px 0 0; font: 500 12.5px/1.5 var(--l-mono); color: var(--l-hero-ink, var(--l-ink)); }

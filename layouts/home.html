@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="page">
+{{ partial "header.html" . }}
+<main class="home">
+<section class="intro" aria-labelledby="name">
+  {{- $avatar := resources.Get .Params.avatar }}
+  <p class="who">{{ with $avatar }}{{ $a := .Fill "144x144 webp q90 center" }}<img src="{{ $a.RelPermalink }}" alt="{{ site.Params.author }}" width="72" height="72">{{ end }}<span>{{ .Params.role }}</span></p>
+  {{- $name := split site.Params.author " " }}
+  <h1 class="name" id="name">{{ range $i, $n := $name }}{{ if $i }} {{ end }}<span>{{ $n }}</span>{{ end }}</h1>
+  <p class="lede">{{ .Params.lede }}</p>
+  <div class="bio">{{ .Content }}</div>
+  <div class="out"><a href="/uploads/resume.pdf">CV, PDF ↗</a><a href="https://www.linkedin.com/in/akbolat-sadvakassov">LinkedIn ↗</a><a href="https://t.me/iRYO400">Telegram ↗</a></div>
+</section>
+
+<section class="stack" id="projects" aria-labelledby="proj-h">
+  <div class="sect-head"><h2 id="proj-h">Projects</h2></div>
+  <ul class="stack__list">
+  {{- range hugo.Data.projects }}
+    {{- $art := resources.Get .art }}{{ $icon := resources.Get .icon }}
+    {{- $words := split .name " " }}{{ $last := index $words (sub (len $words) 1) }}{{ $head := delimit (first (sub (len $words) 1) $words) " " }}
+    <li><a class="plate" href="/{{ .slug }}/">
+      <div class="plate__media" aria-hidden="true"><div class="art art--{{ .slug }}"><img src="{{ $art.RelPermalink }}" alt="" width="{{ $art.Width }}" height="{{ $art.Height }}" decoding="async"></div></div>
+      <div class="plate__veil" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="plate__text"><span class="plate__icon"><img src="{{ $icon.RelPermalink }}" alt="" width="64" height="64"></span><p class="card__meta">{{ .kind }}<span class="meta-pl"> · {{ .platforms }}</span></p>
+      <h3 class="plate__name">{{ with $head }}{{ . }} {{ end }}<span class="nw">{{ $last }}<i aria-hidden="true">→</i></span></h3>
+      <p class="plate__line">{{ .oneliner }}</p>
+      <ul class="plate__tech">{{ range .tech }}<li>{{ . }}</li>{{ end }}</ul></div>
+    </a></li>
+  {{- end }}
+  </ul>
+</section>
+
+<section class="sect writing" id="writing" aria-labelledby="writing-h">
+  <div class="sect-head"><h2 id="writing-h">Writing</h2><p>Android and Compose, mirrored on Medium</p></div>
+  {{ partial "writing-list.html" . }}
+</section>
+
+<section class="sect elsewhere" aria-labelledby="else-h">
+  <div class="sect-head"><h2 id="else-h">Elsewhere</h2><p>Telegram is the fastest</p></div>
+  <ul class="where-icons">
+  {{- $icons := hugo.Data.brand_icons }}
+  {{- range hugo.Data.links }}
+    <li><a href="{{ .url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="{{ index $icons .icon }}"/></svg><span>{{ .name }}</span></a></li>
+  {{- end }}
+  </ul>
+</section>
+</main>
+{{ partial "footer.html" . }}
+</div>
+{{ partial "home-scripts.html" . }}
+{{ end }}

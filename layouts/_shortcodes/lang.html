@@ -1,0 +1,4 @@
+{{- /* {{< lang ru >}} … {{< /lang >}}: one language of a bilingual page, anchored as #en / #ru. The inner text is Markdown. */ -}}
+<section id="{{ .Get 0 }}" lang="{{ .Get 0 }}">
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+</section>

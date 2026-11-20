@@ -1,0 +1,8 @@
+# Elsewhere: order matters. `icon` is a key of data/brand_icons.json (Simple Icons, CC0).
+- {icon: telegram, name: Telegram, url: "https://t.me/iRYO400"}
+- {icon: github, name: GitHub, url: "https://github.com/iRYO400"}
+- {icon: linkedin, name: LinkedIn, url: "https://www.linkedin.com/in/akbolat-sadvakassov"}
+- {icon: medium, name: Medium, url: "https://medium.com/@iRYO400"}
+- {icon: stackoverflow, name: Stack Overflow, url: "https://stackoverflow.com/users/5153846/akbolat-sss"}
+- {icon: youtube, name: YouTube, url: "https://www.youtube.com/@iRYO400/videos"}
+- {icon: steam, name: Steam Workshop, url: "https://steamcommunity.com/id/iRYO400/myworkshopfiles/"}

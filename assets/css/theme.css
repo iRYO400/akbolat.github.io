@@ -1,0 +1,6 @@
+/* The Chalk palette with Literata and IBM Plex Sans. The theme follows the system. */
+:root{--bg:#f4f4f2;--raised:#ffffff;--ink:#111214;--muted:#5d6066;--hair:#dcdde0;--accent:#2a49d6;--shade:15 18 30;color-scheme:light;
+  --f-display:"Literata", Georgia, serif;--w-name:600;--w-display:600;--t-name:-.03em;--t-display:-.012em;
+  --f-body:"IBM Plex Sans", -apple-system, "Segoe UI", system-ui, sans-serif;--f-meta:var(--f-body);
+  --f-mono:ui-monospace, "SF Mono", Menlo, Consolas, monospace}
+@media (prefers-color-scheme: dark){:root{--bg:#0d0e11;--raised:#15171b;--ink:#e8e9ec;--muted:#8f939b;--hair:#262931;--accent:#8ea3ff;--shade:225 230 245;color-scheme:dark}}

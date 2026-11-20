@@ -1,0 +1,10 @@
+/* Pocket Armory landing: theme tokens and page-specific art (the landing will be redesigned later). */
+:root{--l-bg:#0e2440;--l-surface:#153358;--l-ink:#f3f7fc;--l-muted:#a9bed7;--l-line:#21446b;--l-line-strong:#4a77a6;
+--l-accent:#ffc83d;--l-title:#ffc83d;--l-display:"Russo One",Impact,sans-serif;--l-display-weight:400;--l-body:"Rubik",system-ui,sans-serif;--l-track:.005em;
+--l-hero:linear-gradient(180deg,#4a90cb 0%,#2f72ad 52%,#1b4f86 100%);--l-hero-ink:#fff;--l-hero-muted:#d7e7f7;--l-hero-line:rgb(255 255 255 / .55);
+--l-btn:#071526;--l-btn-ink:#fff;--l-radius:14px;--l-bar:#0a1c33;--l-bar-ink:#a9bed7;color-scheme:dark;}
+.hero h1{text-transform:uppercase;text-shadow:0 .06em 0 #0b2a4a,0 .14em .4em rgb(0 0 0 / .3)}
+.hero::before{content:"";position:absolute;left:-40%;right:-40%;bottom:-8%;height:60%;pointer-events:none;
+background-image:linear-gradient(rgb(255 255 255 / .26) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255 / .26) 1px,transparent 1px);
+background-size:72px 72px;transform:perspective(420px) rotateX(64deg);transform-origin:50% 100%;
+-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%)}

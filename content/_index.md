@@ -1,23 +1,12 @@
 ---
-title: 'Home'
-date: 2023-10-24
-type: landing
-sections:
-  - block: resume-biography
-    content:
-      # The user's folder name in content/authors/
-      username: admin
-    design:
-      spacing:
-        padding: [0, 0, 0, 0]
-      biography:
-        style: 'text-align: justify; font-size: 0.8em;'
-  - block: collection
-    content:
-      filters:
-        folders:
-          - post
-    design:
-      spacing:
-        padding: ['2rem', 0, '6rem', 0]
+title: Akbolat's Workshop
+role: Senior Android Developer
+avatar: images/avatar.webp
+lede: Hi! I’m from KZ 🇰🇿
 ---
+
+I'm a Senior Android engineer with 9+ years in fintech and banking, currently working on a large-scale investing product. I like owning features end-to-end and keeping codebases fast and well-tested (Kotlin, Jetpack Compose, MVI). Check out my [CV](/uploads/resume.pdf).
+
+I write technical notes on [Medium](https://medium.com/@iRYO400) — mostly hard-won Android & Compose snippets.
+
+I came from 3D art and game dev: UE4 tutorials on [YouTube](https://www.youtube.com/@iRYO400/videos) and 3D models for Dota 2 on [Steam Workshop](https://steamcommunity.com/id/iRYO400/myworkshopfiles/). These days I tinker with my own hobby game in Unity on the side.

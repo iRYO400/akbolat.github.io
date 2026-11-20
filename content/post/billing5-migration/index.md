@@ -1,6 +1,6 @@
 ---
 title: My migrating to Google Play Billing 5, tech-tips about ProductDetails
-summary: Usefull code snippeds when using Google Play Billing 5
+summary: Useful code snippets for Google Play Billing 5
 date: 2023-02-24
 authors:
   - admin

@@ -1,0 +1,4 @@
+{{- /* {{< youtube id="…" >}}: a responsive 16:9 embed (privacy-enhanced domain). */ -}}
+{{- $id := .Get "id" | default (.Get 0) -}}
+{{- $start := .Get "start" -}}
+<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{{ $id }}{{ with $start }}?start={{ . }}{{ end }}" title="{{ .Get "title" | default "YouTube video" }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>

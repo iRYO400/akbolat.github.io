@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page">
+{{ partial "header.html" . }}
+<main>
+<section class="list-head">
+  <h1 class="doc-title">{{ .Title }}</h1>
+  {{- with .Params.summary }}<p class="post-lede">{{ . }}</p>{{ end }}
+</section>
+<section class="list-body">
+  {{- if eq .RelPermalink "/post/" }}
+  {{ partial "writing-list.html" . }}
+  {{- else }}
+  <ul class="posts">{{ range .RegularPages.ByDate }}{{ partial "post-row.html" . }}{{ end }}</ul>
+  {{- end }}
+</section>
+</main>
+{{ partial "footer.html" . }}
+</div>
+{{ end }}
