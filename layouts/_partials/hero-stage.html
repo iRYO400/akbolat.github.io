@@ -1,0 +1,29 @@
+{{- /* The hero's stage and its depth.
+       Floor: a grid on the ground, seen from 30° above at the hero's bottom edge and drawn on the stage canvas.
+       Its lines run to a vanishing point halfway up the hero and fade out well before they reach it.
+       Scrolling rolls the floor toward you and moves the copy, the halo and the phones at different speeds
+       (writes --p, 0..1 scrolled through the hero); the pointer moves nothing. Under prefers-reduced-motion
+       the floor is drawn but stands still and --p stays 0. Without JS there is no floor. */ -}}
+<script>(function(){var h=document.querySelector('.hero'),cv=h&&h.querySelector('.stage__floor');if(!cv||!cv.getContext)return;
+var ctx=cv.getContext('2d'),still=matchMedia('(prefers-reduced-motion: reduce)').matches,
+  TAN=Math.tan(Math.PI/6),HORIZON=.5,ROLL=6,W=0,H=0,p=0,raf=0;
+function fit(){var d=Math.min(devicePixelRatio||1,2);W=h.clientWidth;H=h.clientHeight;
+  cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0)}
+// Ground units: the eye is 1 above the floor, the bottom edge of the hero is z0 away, a cell is g wide.
+function draw(){var yh=H*HORIZON,D=H-yh,f=D/TAN,z0=f/D,cell=Math.max(64,Math.min(110,W/13)),g=cell/D,
+  fade=ctx.createLinearGradient(0,yh+D*.08,0,yh+D*.6),n=Math.ceil(3*W/cell),s=p*ROLL%1,j,y;
+  fade.addColorStop(0,'rgba(255,255,255,0)');fade.addColorStop(1,'rgba(255,255,255,.24)');
+  ctx.clearRect(0,0,W,H);ctx.strokeStyle=fade;
+  // lines along the view, from the vanishing point through each cell corner on the bottom edge
+  ctx.lineWidth=1.25;ctx.beginPath();
+  for(j=-n;j<=n;j++){ctx.moveTo(W/2,yh);ctx.lineTo(W/2+j*cell,H)}
+  ctx.stroke();
+  // lines across, one per cell of depth, thinner as they recede
+  for(j=0;(y=yh+f/(z0+(j-s)*g))-yh>D*.08;j++){ctx.lineWidth=Math.max(.75,2*(y-yh)/D);ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}}
+function frame(){raf=0;var r=h.getBoundingClientRect();p=Math.min(1,Math.max(0,-r.top/r.height));
+  h.style.setProperty('--p',p.toFixed(4));if(p<1)draw()}
+function ask(){if(!raf)raf=requestAnimationFrame(frame)}
+function relayout(){fit();draw();if(!still)ask()}
+if(window.ResizeObserver)new ResizeObserver(relayout).observe(h);else addEventListener('resize',relayout);
+relayout();if(!still)addEventListener('scroll',ask,{passive:true});
+})();</script>

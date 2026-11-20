@@ -2,15 +2,14 @@
 projects: Projeler
 language: Dil
 help: Yardım
-gp_small: Hemen indir
-as_small: Hemen indir
+gp_alt: Google Play’den indirin
+as_alt: App Store’dan indirin
 hint_ios: iOS kullanıyorsun, bu yüzden App Store başta.
 hint_android: Android kullanıyorsun, bu yüzden Google Play başta.
 privacy: Gizlilik
 support: Destek
 delete_data: Verileri sil
 made_by: Akbolat Sadvakassov tarafından yapıldı
-stack: Kullanılan teknolojiler
 doc_anchor: ""
 r_common: Yaygın
 r_rare: Nadir

@@ -2,15 +2,14 @@
 projects: Projects
 language: Language
 help: Help
-gp_small: Get it on
-as_small: Download on the
+gp_alt: Get it on Google Play
+as_alt: Download on the App Store
 hint_ios: You are on iOS, so the App Store comes first.
 hint_android: You are on Android, so Google Play comes first.
 privacy: Privacy
 support: Support
 delete_data: Delete data
 made_by: Made by Akbolat Sadvakassov
-stack: Built with
 # The Pocket Armory policy, support and delete-data pages hold both languages; this jumps to the visitor's.
 doc_anchor: ""
 # Rarity names as the game shows them, and gun classes for the chest strip.

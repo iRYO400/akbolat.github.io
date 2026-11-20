@@ -2,15 +2,14 @@
 projects: Projekte
 language: Sprache
 help: Hilfe
-gp_small: Jetzt bei
-as_small: Laden im
+gp_alt: Jetzt bei Google Play
+as_alt: Laden im App Store
 hint_ios: Du bist auf iOS, daher steht der App Store vorn.
 hint_android: Du bist auf Android, daher steht Google Play vorn.
 privacy: Datenschutz
 support: Support
 delete_data: Daten löschen
 made_by: Entwickelt von Akbolat Sadvakassov
-stack: Gebaut mit
 doc_anchor: ""
 r_common: Gewöhnlich
 r_rare: Selten

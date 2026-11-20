@@ -1,15 +1,14 @@
 projects: Проекты
 language: Язык
 help: Помощь
-gp_small: Доступно в
-as_small: Загрузите в
+gp_alt: Скачать из Google Play
+as_alt: Загрузите в App Store
 hint_ios: У тебя iOS, поэтому сначала App Store.
 hint_android: У тебя Android, поэтому сначала Google Play.
 privacy: Конфиденциальность
 support: Поддержка
 delete_data: Удалить данные
 made_by: Автор — Akbolat Sadvakassov
-stack: Как сделано
 doc_anchor: "#ru"
 r_common: Обычный
 r_rare: Редкий

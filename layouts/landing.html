@@ -1,16 +1,28 @@
 {{ define "main" }}
 {{- $doc := T "doc_anchor" }}
 <div class="by"><div class="wrap"><a href="/">← Akbolat Sadvakassov</a><span class="sep">/</span><a href="/#projects">{{ T "projects" }}</a>{{ partial "lang-switch.html" . }}</div></div>
-<header class="hero"><div class="stage" aria-hidden="true"><div class="stage__floor"></div></div><div class="wrap">
+<header class="hero"><div class="stage" aria-hidden="true"><canvas class="stage__floor"></canvas></div><div class="wrap">
   <div class="copy">
     <div class="app-id">{{ with resources.Get .Params.icon }}<img src="{{ .RelPermalink }}" alt="" width="64" height="64">{{ end }}{{/* lang="en": Turkish capitals would turn the platform names into İOS and ANDROİD */}}<p class="kind">{{ .Params.kind }} · <span lang="en">iOS · Android</span></p></div>
     <h1>{{ .Title }}{{ with .Params.tagline }}<small>{{ . }}</small>{{ end }}</h1>
     <p class="pitch">{{ .Params.pitch }}</p>
-    <div class="ctas">
-      <a class="btn btn--solid" data-os="android" href="{{ .Params.play_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.2v17.6L20 12z" fill="currentColor"/></svg><span><small>{{ T "gp_small" }}</small><b>Google Play</b></span></a>
-      <a class="btn btn--solid" data-os="ios" href="{{ .Params.app_store_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 3.6 21.2h3.2l1.7-3.9h7l1.7 3.9h3.2L12 2.8Zm-2.3 11.7L12 9.2l2.3 5.3H9.7Z" fill="currentColor"/></svg><span><small>{{ T "as_small" }}</small><b>App Store</b></span></a>
+    {{- /* The stores' own badges in the page's language, all 52 px tall. The App Store badge is an SVG, so its
+           width comes from the viewBox. */}}
+    {{- $lang := site.Language.Lang }}
+    <div class="get"><div class="ctas">
+      {{- with resources.Get (printf "images/badges/google-play-%s.webp" $lang) }}
+      <a class="store" data-os="android" href="{{ $.Params.play_url }}"><img src="{{ .RelPermalink }}" alt="{{ T "gp_alt" }}" width="{{ math.Round (div (mul 52.0 .Width) .Height) }}" height="52"></a>
+      {{- end }}
+      {{- with resources.Get (printf "images/badges/app-store-%s.svg" $lang) }}{{ $vb := index (findRESubmatch `viewBox="0 0 ([\d.]+) ([\d.]+)"` .Content 1) 0 }}
+      <a class="store" data-os="ios" href="{{ $.Params.app_store_url }}"><img src="{{ .RelPermalink }}" alt="{{ T "as_alt" }}" width="{{ math.Round (div (mul 52.0 (float (index $vb 1))) (float (index $vb 2))) }}" height="52"></a>
+      {{- end }}
     </div>
     <p class="os-hint" hidden data-ios="{{ T "hint_ios" }}" data-android="{{ T "hint_android" }}"></p>
+    {{- /* Desktop only, centred under the badges: the code leads to /pocket-armory/get/, which sends a phone
+           on to its own store. 37 modules at 11 px each, shown at half size, so a 2x screen draws them 1:1. */}}
+    {{- with images.QR ("pocket-armory/get/" | absURL) (dict "scale" 11 "targetDir" "images/qr") }}
+    <img class="qr" src="{{ .RelPermalink }}" alt="" width="{{ div .Width 2 }}" height="{{ div .Height 2 }}">
+    {{- end }}</div>
   </div>
   <div class="visual"><div class="duo">
     {{- range .Params.hero_screens }}{{ $alt := .alt }}{{ with resources.Get .img }}<div class="phone"><img src="{{ .RelPermalink }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}"></div>{{ end }}{{ end -}}
@@ -20,12 +32,12 @@
 <section class="sec"><div class="wrap"><h2>{{ T "help" }}</h2><div class="help">
   {{- range .Params.help }}<div><h3>{{ .title }}</h3><p>{{ .text }}</p>{{ with .address }}<a class="go" href="mailto:{{ . }}">{{ . }}</a>{{ end }}{{ $lt := .link_text }}{{ with .link }}<a class="go" href="{{ . }}">{{ $lt }} →</a>{{ end }}</div>{{ end -}}
 </div></div></section>
-{{- with .Params.stack }}
-<section class="sec sec--stack"><div class="wrap"><h2>{{ T "stack" }}</h2><ul class="stack">
+{{- with hugo.Data.pocket_armory_stack }}
+<section class="sec sec--stack" lang="en"><div class="wrap"><h2>Tech stack</h2><ul class="stack">
   {{- range . }}<li><b>{{ .name }}</b><span>{{ .text }}</span></li>{{ end -}}
 </ul></div></section>
 {{- end }}
 <footer class="foot"><div class="wrap"><span>{{ .Title }} · © {{ now.Year }} Akbolat Sadvakassov · <a href="/pocket-armory/privacy/{{ $doc }}">{{ T "privacy" }}</a> · <a href="/pocket-armory/support/{{ $doc }}">{{ T "support" }}</a> · <a href="/pocket-armory/delete-data/{{ $doc }}">{{ T "delete_data" }}</a></span><a href="/">{{ T "made_by" }} →</a></div></footer>
 {{ partial "store-pick.html" . }}
-{{ partial "hero-parallax.html" . }}
+{{ partial "hero-stage.html" . }}
 {{ end }}

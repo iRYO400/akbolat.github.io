@@ -1,9 +1,10 @@
-{{- /* Puts the visitor's own store first and turns the other one into a quiet outline button.
+{{- /* Puts the visitor's own store first, says why, and drops the QR code, which only helps on a computer.
        iPadOS reports itself as a Mac, so a touch-capable "Mac" counts as iOS. */ -}}
 <script>(function(){var ua=navigator.userAgent||'';
 var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
 var os=ios?'ios':/Android/i.test(ua)?'android':'';if(!os)return;
 document.querySelectorAll('.ctas').forEach(function(box){var mine=box.querySelector('[data-os="'+os+'"]');if(!mine)return;
-box.prepend(mine);box.querySelectorAll('[data-os]').forEach(function(b){if(b!==mine)b.classList.add('btn--other')});
+box.prepend(mine);
 var hint=box.parentNode.querySelector('.os-hint');if(hint&&hint.dataset[os]){hint.textContent=hint.dataset[os];hint.hidden=false}});
+document.querySelectorAll('.qr').forEach(function(q){q.remove()});
 })();</script>

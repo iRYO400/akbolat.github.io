@@ -1,0 +1,8 @@
+# The "Tech stack" section of the Pocket Armory landing (layouts/landing.html). English on every language
+# page, so it is not translated.
+- name: Kotlin Multiplatform
+  text: "Game logic, economy and saves: one codebase for Android and iOS."
+- name: Compose Multiplatform
+  text: "The entire UI, shared by both platforms."
+- name: Google Filament
+  text: "Physically based rendering: OpenGL ES on Android, Metal on iOS. Materials precompiled with matc, lighting baked with cmgen."

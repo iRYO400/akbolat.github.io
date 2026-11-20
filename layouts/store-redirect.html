@@ -1,0 +1,17 @@
+{{- /* The landing's QR code opens this page: an iPhone or iPad goes on to the App Store, an Android phone to
+       Google Play, anything else to the landing. Kept out of lists, the sitemap and search. It defines no
+       blocks, so baseof.html does not wrap it. */ -}}
+{{- $l := .Parent }}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{{ $l.Title }}</title>
+<script>(function(){var ua=navigator.userAgent||'';
+var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+location.replace(ios?{{ $l.Params.app_store_url }}:/Android/i.test(ua)?{{ $l.Params.play_url }}:{{ $l.RelPermalink }})})();</script>
+</head>
+<body><p><a href="{{ $l.Params.play_url }}">Google Play</a> · <a href="{{ $l.Params.app_store_url }}">App Store</a> · <a href="{{ $l.RelPermalink }}">{{ $l.Title }}</a></p></body>
+</html>

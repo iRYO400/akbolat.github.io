@@ -2,15 +2,14 @@
 projects: Proyectos
 language: Idioma
 help: Ayuda
-gp_small: Disponible en
-as_small: Descárgalo en el
+gp_alt: Disponible en Google Play
+as_alt: Consíguelo en el App Store
 hint_ios: Estás en iOS, así que el App Store va primero.
 hint_android: Estás en Android, así que Google Play va primero.
 privacy: Privacidad
 support: Soporte
 delete_data: Borrar datos
 made_by: Hecho por Akbolat Sadvakassov
-stack: Hecho con
 doc_anchor: ""
 r_common: Común
 r_rare: Raro

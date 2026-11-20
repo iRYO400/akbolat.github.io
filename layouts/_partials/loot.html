@@ -1,6 +1,6 @@
-{{- /* What is inside the game and where gold comes from, as one section: a chest strip spins and lands on a
-       gun, then the three things you can do with it. The guns, their rarity weights and the opening state
-       are in data/pocket_armory.yaml; the texts are in the page's `loot` block.
+{{- /* The game in one section: a chest strip spins and lands on a gun, and beside it the loop in three steps.
+       The guns, their rarity weights and the opening state are in data/pocket_armory.yaml; the texts are in
+       the page's `loot` block.
        The strip turns only while it is on screen and never under reduced motion. Without JavaScript it rests
        on the opening state, which is rendered here. */ -}}
 {{- $m := .Params.loot }}
@@ -13,13 +13,8 @@
 {{- $slots := slice }}
 {{- range $i, $q := $d.start }}{{ $slots = $slots | append (dict "g" (mod (mul $i 7) (len $pool)) "q" $q) }}{{ end }}
 {{- $mid := div (sub (len $slots) 1) 2 }}
-{{- $icons := dict
-  "keep" `<path d="M4 9h16v11H4zM2 5h20v4H2zM10 13h4"/>`
-  "show" `<path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6"/>`
-  "sell" `<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M14.5 10c0-1.2-1.1-2-2.5-2s-2.5.8-2.5 2 1.1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2-2.5-.8-2.5-2"/>` }}
 <section class="sec loot" aria-labelledby="loot-h"><div class="wrap">
   <h2 id="loot-h">{{ $m.title }}</h2>
-  <p class="sec-lede">{{ $m.lede }}</p>
   <div class="loot__strip" aria-hidden="true"><div class="strip"><div class="track">
     {{- range $i, $s := $slots }}{{ $g := index $pool $s.g }}<div class="slot{{ if eq $i $mid }} win{{ end }}" data-r="{{ (index $rar $s.q).k }}"><img src="{{ $g.s }}" alt="" width="{{ $g.w }}" height="{{ $g.h }}" loading="lazy" decoding="async"></div>{{ end -}}
   </div></div><i class="mark"></i></div>
@@ -27,11 +22,10 @@
   <div class="loot__deal">
     <figure class="drop" data-r="{{ $q.k }}"><i class="drop__rays" aria-hidden="true"></i><img class="drop__gun" src="{{ $g.s }}" alt="" width="{{ $g.w }}" height="{{ $g.h }}" loading="lazy" decoding="async">
       <figcaption><span class="new">{{ $m.new }}</span><span class="rar">{{ $q.n }}</span><span class="cls">{{ $g.c }}</span></figcaption></figure>
-    <div class="fork">
-      {{- range $m.paths }}<div class="path"><svg viewBox="0 0 24 24" aria-hidden="true">{{ index $icons .icon | safeHTML }}</svg><h3>{{ .title }}</h3><p>{{ .text }}</p></div>{{ end -}}
-    </div>
+    <div class="steps"><ol>
+      {{- range $m.steps }}<li>{{ . }}</li>{{ end -}}
+    </ol></div>
   </div>
-  <p class="loopback"><i class="coin" aria-hidden="true"></i><span><b>{{ $m.loop_title }}</b> {{ $m.loop_text }}</span></p>
 </div></section>
 <script>(function(){
 var P={{ $pool }},R={{ $rar }},slots={{ $slots }},MID={{ $mid }},cur=MID,on=false,busy=false;
