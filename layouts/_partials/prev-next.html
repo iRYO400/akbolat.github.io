@@ -1,0 +1,13 @@
+{{- /* Chronological neighbours within the section: Previous is the older one, Next the newer one. */ -}}
+{{- $pages := .CurrentSection.RegularPages.ByDate -}}
+{{- $prev := false }}{{ $next := false -}}
+{{- range $i, $p := $pages }}{{ if eq $p.RelPermalink $.RelPermalink }}
+  {{- if gt $i 0 }}{{ $prev = index $pages (sub $i 1) }}{{ end }}
+  {{- if lt (add $i 1) (len $pages) }}{{ $next = index $pages (add $i 1) }}{{ end }}
+{{- end }}{{ end -}}
+{{- if or $prev $next }}
+<nav class="pn" aria-label="More posts">
+  {{- with $prev }}<a class="prev" href="{{ .RelPermalink }}" rel="prev"><small>← Previous</small><span>{{ .Title }}</span></a>{{ end }}
+  {{- with $next }}<a class="next" href="{{ .RelPermalink }}" rel="next"><small>Next →</small><span>{{ .Title }}</span></a>{{ end }}
+</nav>
+{{- end }}

@@ -1,0 +1,6 @@
+{{- /* Tags worth showing next to a post: without the hidden ones, at most .n of them. Call with (dict "page" . "n" 2). */ -}}
+{{- $hidden := slice -}}
+{{- range site.Params.hiddenTags }}{{ $hidden = $hidden | append (lower .) }}{{ end -}}
+{{- $out := slice -}}
+{{- range .page.Params.tags }}{{ $t := strings.TrimSpace . }}{{ if not (in $hidden (lower $t)) }}{{ $out = $out | append $t }}{{ end }}{{ end -}}
+{{- return first .n $out -}}

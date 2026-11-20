@@ -1,0 +1,207 @@
+/* Portfolio: one centred column. About, projects, writing, elsewhere; the project plates are wider than the text.
+   Colours and faces come from theme.css; brand colour lives only inside each project's art and icon. */
+:root {
+  --edge: clamp(16px, 6vw, 96px);
+  --gut-l: max(var(--edge), env(safe-area-inset-left, 0px));
+  --gut-r: max(var(--edge), env(safe-area-inset-right, 0px));
+  --col: 44rem;    /* text column */
+  --wide: 60rem;   /* project plates */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 17px/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+a { color: inherit; }
+::selection { background: var(--accent); color: var(--bg); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+
+.page { overflow-x: hidden; overflow-x: clip; padding-left: var(--gut-l); padding-right: var(--gut-r); }
+.top, main, .foot { max-width: var(--col); margin-inline: auto; }
+
+/* ---------- header ---------- */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 0 24px; flex-wrap: wrap; padding-block: 12px; }
+.mark { font: var(--w-display) 17px/1 var(--f-display); letter-spacing: var(--t-display); text-decoration: none; padding-block: 12px; }
+.nav { display: flex; flex-wrap: wrap; gap: 0 22px; font-size: 15px; }
+.nav a { text-decoration: none; color: var(--muted); padding-block: 12px; }
+.nav a:hover, .nav a[aria-current] { color: var(--ink); }
+.nav a[aria-current] { text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--hair); }
+
+/* ---------- intro ---------- */
+.intro { container-type: inline-size; padding-top: clamp(24px, 5vw, 64px); text-align: center; }
+.who { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 0; font-size: 15px; line-height: 1.4; color: var(--muted); }
+.who img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; filter: grayscale(1) contrast(1.04); transition: filter .6s ease; }
+.who:hover img { filter: none; }
+.name {
+  margin: 22px 0 0; font-family: var(--f-display); font-weight: var(--w-name);
+  font-size: clamp(2.4rem, calc(15cqi * var(--name-k, 1)), 5.6rem); line-height: .96; letter-spacing: var(--t-name);
+}
+.name span { display: block; }
+.lede { margin: 26px auto 0; max-width: 40ch; font: 400 clamp(1.25rem, 2vw, 1.55rem)/1.32 var(--f-display); text-wrap: balance; }
+.bio { max-width: 34rem; margin-inline: auto; }
+.bio p { margin: 16px 0 0; color: var(--muted); }
+.bio strong { color: var(--ink); font-weight: 600; }
+.bio a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--hair); }
+.bio a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.out { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 22px; margin-top: 14px; font-size: 15px; }
+.out a { padding-block: 10px; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--hair); }
+.out a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+/* ---------- sections ---------- */
+.sect, .stack { padding-top: clamp(56px, 7vw, 96px); }
+.sect-head { display: flex; align-items: baseline; gap: 4px 18px; flex-wrap: wrap; margin-bottom: 18px; }
+.sect-head h2 { margin: 0; font: var(--w-display) clamp(1.75rem, 2.6vw, 2.2rem)/1.05 var(--f-display); letter-spacing: var(--t-display); }
+.sect-head p { margin: 0; font-size: 15px; color: var(--muted); }
+
+/* writing */
+.posts { list-style: none; margin: 0; padding: 0; max-width: var(--col); border-bottom: 1px solid var(--hair); }
+.posts li { border-top: 1px solid var(--hair); }
+.posts a, .posts .draft { display: grid; grid-template-columns: 5.4rem minmax(0, 1fr); gap: 2px 18px; padding-block: 18px 20px; text-decoration: none; }
+.posts time, .posts .when { grid-row: span 3; padding-top: 3px; font: 400 14px/1.4 var(--f-meta); color: var(--muted); font-variant-numeric: tabular-nums; }
+.posts h3 { margin: 0; font: var(--w-display) 1.22rem/1.28 var(--f-display); letter-spacing: var(--t-display); text-wrap: balance; }
+.posts h3::after { content: " →"; display: inline-block; opacity: 0; translate: -6px 0; transition: opacity .25s, translate .25s; }
+.posts a:hover h3 { color: var(--accent); }
+.posts a:hover h3::after { opacity: 1; translate: 0 0; }
+.posts p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+.posts .tags { margin-top: 8px; font: 400 13.5px/1.4 var(--f-meta); color: var(--muted); }
+.posts .draft h3 { color: var(--muted); }
+.posts .draft .tags span { border: 1px dashed var(--hair); padding: 2px 7px; border-radius: 4px; }
+
+/* elsewhere: a row of icons */
+.where-icons { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.where-icons a {
+  position: relative; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid var(--hair); color: var(--ink); transition: color .2s, background-color .2s, border-color .2s;
+}
+.where-icons a:hover, .where-icons a:focus-visible { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+.where-icons svg { width: 20px; height: 20px; fill: currentColor; }
+.where-icons span {   /* the name, shown on hover and read by screen readers */
+  position: absolute; bottom: calc(100% + 8px); left: 50%; translate: -50% 4px; opacity: 0; pointer-events: none;
+  padding: 4px 9px; border-radius: 6px; background: var(--ink); color: var(--bg); font-size: 13px; line-height: 1.3; white-space: nowrap;
+  transition: opacity .15s, translate .15s;
+}
+.where-icons a:hover span, .where-icons a:focus-visible span { opacity: 1; translate: -50% 0; }
+
+/* uses: thing | what it is for */
+.uses { margin: 0; border-bottom: 1px solid var(--hair); }
+.uses div { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 2px 24px; padding-block: 14px; border-top: 1px solid var(--hair); }
+.uses dt { font-weight: 600; line-height: 1.45; }
+.uses dd { margin: 0; color: var(--muted); line-height: 1.5; }
+
+/* phone: the date / label column moves above the text instead of eating a third of the width */
+@media (max-width: 520px) {
+  .posts a, .posts .draft { grid-template-columns: minmax(0, 1fr); }
+  .posts time, .posts .when { grid-row: auto; padding-top: 0; }
+  .uses div { grid-template-columns: minmax(0, 1fr); }
+}
+
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-block: 32px 96px; margin-top: clamp(56px, 8vw, 96px); border-top: 1px solid var(--hair); font: 400 13.5px/1.6 var(--f-meta); color: var(--muted); }
+
+/* ---------- projects: low, wide plates, flush, the picture drifts on scroll ---------- */
+.stack { --w: min(calc(100vw - var(--gut-l) - var(--gut-r)), var(--wide)); }
+.stack > * { width: var(--w); margin-left: calc((100% - var(--w)) / 2); }
+.stack__list { --r: 12px; position: relative; list-style: none; margin-block: 0; padding: 0; overflow: hidden; }
+/* Rounded corners are painted over in the page colour instead of clipped: Chrome drops the blur mask
+   inside any rounded clip and blurs the whole plate. */
+.stack__list::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    radial-gradient(circle at 100% 100%, transparent calc(var(--r) - .5px), var(--bg) var(--r)) left top / var(--r) var(--r) no-repeat,
+    radial-gradient(circle at 100% 0, transparent calc(var(--r) - .5px), var(--bg) var(--r)) left bottom / var(--r) var(--r) no-repeat,
+    radial-gradient(circle at 0 100%, transparent calc(var(--r) - .5px), var(--bg) var(--r)) right top / var(--r) var(--r) no-repeat,
+    radial-gradient(circle at 0 0, transparent calc(var(--r) - .5px), var(--bg) var(--r)) right bottom / var(--r) var(--r) no-repeat;
+}
+.stack__list > li { min-width: 0; transition: translate 1s cubic-bezier(.16, 1, .3, 1); }
+.stack__list > li:nth-child(2) { transition-delay: .08s; }
+.stack__list > li:nth-child(3) { transition-delay: .16s; }
+.stack__list > li:nth-child(n+4) { transition-delay: .24s; }
+.js-motion .stack__list > li:not(.is-in) { translate: 80px 0; transition: none; }
+
+.plate {
+  --tz: min(50%, 30rem);              /* icon and text */
+  --tf: calc(var(--tz) * 1.75);       /* where the dark glass has fully faded */
+  --g: calc(var(--tf) - var(--tz));   /* length of that fade */
+  container-type: inline-size; position: relative; display: flex; align-items: center;
+  --ratio: 4.7; overflow: hidden; background: #0b0d12; color: #fff; text-decoration: none;
+}
+.plate:focus-visible { outline-offset: -3px; border-radius: 0; }
+/* minimum height from the width; the plate still grows when the text needs more
+   (aspect-ratio would clip it, because the plate hides its overflow) */
+.plate::before { content: ""; flex: none; width: 0; padding-bottom: calc(100% / var(--ratio)); }
+
+/* The picture is 2.2 plates tall and shifts by up to 0.57 of a plate either way, so it moves
+   about a third slower than the page. */
+.plate__media { position: absolute; inset: -60% 0; container-type: size; translate: 0 calc(var(--p, 0) * -26%); }
+.plate__media .art { transition: scale .9s cubic-bezier(.2, .7, .2, 1); }
+.plate:hover .plate__media .art { scale: 1.04; }
+
+/* dark glass with a progressive blur: the strongest layer stops earliest, the weakest reaches furthest.
+   It overhangs the plate a little so the blur's own edge never shows. */
+.plate__veil { position: absolute; inset: -6px; pointer-events: none; }
+.plate__veil i {
+  position: absolute; inset: 0; -webkit-backdrop-filter: blur(var(--b)); backdrop-filter: blur(var(--b));
+  -webkit-mask-image: linear-gradient(90deg, #000 var(--m0), transparent var(--m1)); mask-image: linear-gradient(90deg, #000 var(--m0), transparent var(--m1));
+}
+.plate__veil i:nth-child(1) { --b: 4px;  --m0: var(--tz);                --m1: calc(var(--tz) + var(--g) * .65); }
+.plate__veil i:nth-child(2) { --b: 12px; --m0: calc(var(--tz) * .85);    --m1: calc(var(--tz) + var(--g) * .4); }
+.plate__veil i:nth-child(3) { --b: 26px; --m0: calc(var(--tz) * .65);    --m1: calc(var(--tz) + var(--g) * .15); }
+.plate__veil::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgb(6 8 12 / .74), rgb(6 8 12 / .56) calc(var(--tz) * .8),
+              rgb(6 8 12 / .26) calc(var(--tz) + var(--g) * .45), transparent var(--tf));
+}
+
+.plate__text {
+  position: relative; flex: none; width: var(--tz);
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 2px 18px;
+  padding: 18px 12px 18px clamp(20px, 3.6cqi, 36px);
+}
+.plate__icon {
+  grid-row: 1 / span 3; position: relative; width: clamp(52px, 6.6cqi, 68px); aspect-ratio: 1; border-radius: 23%; overflow: hidden;
+  box-shadow: 0 8px 22px rgb(0 0 0 / .4);
+}
+.plate__icon::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14); }
+.plate__icon img, .plate__icon svg { display: block; width: 100%; height: 100%; }
+.plate .card__meta { grid-column: 2; font-size: 13.5px; color: rgb(255 255 255 / .78); }
+.plate__name { grid-column: 2; margin: 0; font: var(--w-display) clamp(1.4rem, 3.4cqi, 2.1rem)/1.08 var(--f-display); letter-spacing: var(--t-display); }
+.plate__name .nw { white-space: nowrap; }
+.plate__name i { display: inline-block; margin-left: .3em; font: 400 .8em/1 var(--f-body); opacity: .5; transition: translate .25s, opacity .25s; }
+.plate:hover .plate__name i { opacity: 1; translate: 5px 0; }
+.plate__line { grid-column: 2; margin: 3px 0 0; font-size: 15px; line-height: 1.42; color: rgb(255 255 255 / .8); }
+/* tech stack: chips */
+.plate__tech { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.plate__tech li {
+  padding: 3px 9px; border-radius: 999px; font: 500 12px/1.35 var(--f-body);
+  color: rgb(255 255 255 / .88); background: rgb(255 255 255 / .07); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .2);
+}
+
+.card__meta { margin: 0; font: 400 14px/1.5 var(--f-meta); color: var(--muted); }
+
+/* phone: plates go edge to edge; the icon sits beside the title and the line runs under both */
+@media (max-width: 639px) {
+  .stack__list { width: auto; margin-left: calc(-1 * var(--gut-l)); margin-right: calc(-1 * var(--gut-r)); }
+  .stack__list::after { display: none; }
+  .plate { --tz: 68%; --tf: 95%; --ratio: 2.7; }
+  .plate__text { padding-block: 14px; }
+  .plate__text { padding-left: var(--gut-l); padding-right: 6px; column-gap: 12px; }
+  .plate__icon { grid-row: 1 / span 2; width: 42px; }
+  .plate .meta-pl { display: none; }   /* platforms are on the project page */
+  .plate__name { font-size: 1.3rem; }
+  .plate__line { grid-column: 1 / -1; margin-top: 8px; font-size: 14px; }
+  .plate__tech { grid-column: 1 / -1; margin-top: 8px; gap: 5px; }
+  .plate__tech li { padding: 2px 8px; font-size: 11.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack__list > li, .plate__media .art, .plate__name i, .who img, .where-icons a, .where-icons span { transition: none; }
+}
+
+/* ---------- page title (Uses) ---------- */
+.phead { padding-top: clamp(24px, 5vw, 64px); text-align: center; }
+.ptitle { margin: 0; font: var(--w-name) clamp(2.8rem, 8vw, 5.4rem)/.96 var(--f-display); letter-spacing: var(--t-name); }
+.plede { margin: 18px auto 0; max-width: 34rem; color: var(--muted); font-size: 1.1rem; }
+.plede a { color: var(--ink); text-underline-offset: 4px; text-decoration-color: var(--hair); }
+.plede a:hover { color: var(--accent); text-decoration-color: currentColor; }

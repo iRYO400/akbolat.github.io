@@ -1,0 +1,9 @@
+# Home page plates, in order. `icon` and `art` are files in assets/.
+- slug: pocket-armory
+  name: Pocket Armory
+  kind: Game
+  platforms: iOS, Android
+  oneliner: Crack open 3D chests, collect cartoon guns and fill your armory.
+  tech: [Kotlin Multiplatform, Compose, Google Filament]
+  icon: images/pa-icon.webp
+  art: images/pa-poster.webp

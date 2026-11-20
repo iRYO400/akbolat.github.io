@@ -1,0 +1,85 @@
+{{- $isLanding := .Params.landing -}}
+{{- $title := site.Title -}}
+{{- if not .IsHome }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
+{{- $desc := cond (ne .Params.summary nil) .Params.summary (.Description | default site.Params.description) -}}
+{{- if .IsHome }}{{ $desc = site.Params.description }}{{ end -}}
+{{- $desc = $desc | plainify | strings.TrimSpace -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if and .IsTranslated (ne .Kind "404") }}
+{{- $default := index .AllTranslations 0 }}
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Name }}" href="{{ .Permalink }}">
+{{- end }}
+<link rel="alternate" hreflang="x-default" href="{{ $default.Permalink }}">
+{{- /* Only the default-language address follows the visitor: a remembered pick first, then the browser's
+       languages in order. An explicit /ru/… link always opens as is, and so do crawlers on either URL. */ -}}
+{{- if eq .RelPermalink $default.RelPermalink }}
+{{- $map := dict }}{{ range .AllTranslations }}{{ $map = merge $map (dict .Language.Name .RelPermalink) }}{{ end }}
+<script>(function(){var m={{ $map }},c;try{c=localStorage.getItem('lang')}catch(e){}
+if(!m[c]){c=null;var l=navigator.languages||[navigator.language||''];for(var i=0;i<l.length&&!c;i++){var k=String(l[i]).slice(0,2).toLowerCase();if(m[k])c=k}}
+if(c&&m[c]!==location.pathname)location.replace(m[c]+location.search+location.hash);})();</script>
+{{- end }}
+{{- end }}
+<meta name="color-scheme" content="{{ if $isLanding }}dark{{ else }}light dark{{ end }}">
+{{- if $isLanding }}
+<meta name="theme-color" content="#0a1c33">
+{{- else }}
+<meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0e11" media="(prefers-color-scheme: dark)">
+{{- end }}
+{{- /* Open Graph and Twitter */ -}}
+{{- $ogImage := "" -}}
+{{- $large := false -}}
+{{- with .Resources.GetMatch "featured.*" -}}
+  {{- if eq .MediaType.SubType "gif" -}}
+    {{- $ogImage = .Permalink -}}
+  {{- else -}}
+    {{- $ogImage = (.Fit "1200x630").Permalink -}}
+  {{- end -}}
+  {{- $large = true -}}
+{{- else -}}
+  {{- with resources.Get "images/avatar.webp" -}}{{- $ogImage = (.Fill "400x400 jpg center").Permalink -}}{{- end -}}
+{{- end }}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:type" content="{{ if eq .Section "post" }}{{ if .IsPage }}article{{ else }}website{{ end }}{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . }}">
+{{- end }}
+<meta name="twitter:card" content="{{ if $large }}summary_large_image{{ else }}summary{{ end }}">
+<meta name="twitter:site" content="@{{ site.Params.twitter }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $ogImage }}
+<meta name="twitter:image" content="{{ . }}">
+{{- end }}
+{{- with site.Home.OutputFormats.Get "RSS" }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">
+{{- end }}
+{{- with resources.Get "media/icon.png" }}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ (.Fill "32x32 png").RelPermalink }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ (.Fill "180x180 png").RelPermalink }}">
+{{- end }}
+{{- if $isLanding }}
+{{ partial "css-landing.html" . }}
+{{- else }}
+<link rel="preload" href="/fonts/plex-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/literata-latin.woff2" as="font" type="font/woff2" crossorigin>
+{{ partial "css-site.html" . }}
+{{- end }}
+{{- if .IsHome }}
+<script>(function(){var d=document.documentElement;
+if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+d.classList.add('js-motion');window.__burstFallback=setTimeout(function(){d.classList.remove('js-motion')},3000);})();</script>
+{{- partial "jsonld-person.html" . }}
+{{- end }}
+{{- if hugo.IsProduction }}{{ with site.Params.googleAnalytics }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ . }}');</script>
+{{- end }}{{ end }}

@@ -1,0 +1,3 @@
+{{- /* One row of a writing list. Call with a page. */ -}}
+{{- $tags := partial "visible-tags.html" (dict "page" . "n" 2) -}}
+<li><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time><h3>{{ .Title }}</h3>{{ with .Params.summary }}<p>{{ . }}</p>{{ end }}{{ with $tags }}<div class="tags">{{ delimit . " · " }}</div>{{ end }}</a></li>

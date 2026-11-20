@@ -1,0 +1,40 @@
+{{ define "main" }}
+<div class="page">
+{{ partial "header.html" . }}
+<main>
+<article class="article">
+  {{- /* a Medium mirror carries only its source link: show the post's opening from data/medium.json */}}
+  {{- $medium := index (findRE `https://medium\.com/[^\s)"<>]+` .RawContent 1) 0 }}
+  {{- $mirror := and $medium (lt .WordCount 40) }}
+  {{- $preview := dict }}
+  {{- if $mirror }}{{ $preview = index hugo.Data.medium (replaceRE `^.*-([0-9a-f]+)$` "$1" $medium) | default dict }}{{ end }}
+  {{- $tags := partial "visible-tags.html" (dict "page" . "n" 3) }}
+  <p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time><span class="sep">·</span>{{ with $preview.minutes }}{{ . }} min read on Medium{{ else }}{{ $.ReadingTime }} min read{{ end }}{{ with $tags }}<span class="sep">·</span>{{ delimit . ", " }}{{ end }}</p>
+  <h1>{{ .Title }}</h1>
+  {{- with .Params.summary }}<p class="post-lede">{{ . }}</p>{{ end }}
+  {{- with .Resources.GetMatch "featured.*" }}
+    {{- $img := . }}
+    {{- if and (ne .MediaType.SubType "gif") (gt .Width 1600) }}{{ $img = .Resize "1600x" }}{{ end }}
+  <figure class="featured"><img src="{{ $img.RelPermalink }}" alt="" width="{{ $img.Width }}" height="{{ $img.Height }}" decoding="async">{{ with $.Params.image.caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}</figure>
+  {{- end }}
+  {{- if $mirror }}
+  {{- with $preview.excerpt }}
+  <div class="prose mirror__excerpt{{ if ge (countwords (plainify .)) 40 }} is-long{{ end }}">
+  {{ . | safeHTML }}
+  </div>
+  {{- end }}
+  <aside class="mirror">
+    <p>{{ if $preview.excerpt }}Continue reading on Medium.{{ else }}The full post lives on Medium.{{ end }}</p>
+    <a class="mirror__go" href="{{ $medium }}">Read on Medium<span aria-hidden="true">↗</span></a>
+  </aside>
+  {{- else }}
+  <div class="prose">
+  {{ .Content }}
+  </div>
+  {{- end }}
+</article>
+{{ partial "prev-next.html" . }}
+</main>
+{{ partial "footer.html" . }}
+</div>
+{{ end }}

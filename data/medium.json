@@ -1,0 +1,44 @@
+{
+  "af7348742247": {
+    "url": "https://medium.com/@iRYO400/how-to-upload-your-android-library-to-maven-central-central-portal-in-2024-af7348742247",
+    "title": "How to upload your Android Library to Maven Central | Central Portal in 2024",
+    "minutes": 5,
+    "excerpt": "<p>Like any developer, I have my own pet projects. I managed to bring one of them to a satisfactory state, so I decided to turn it into a library. I already had experience with Jitpack.io, where everything is very simple — artifacts are taken from the files in the releases tab. This time, I decided to tackle a more complex process: publishing to Maven Central (Central Repository | Portal). However, it wasn’t so easy. Most of the tutorials have become outdated due to changes in 2024. Therefore, I decided to write this guide while uncovering potential pitfalls.</p>"
+  },
+  "cc1105df28b4": {
+    "url": "https://medium.com/@iRYO400/read-this-before-writing-your-first-article-here-cc1105df28b4",
+    "title": "Basic Markdown on Medium you should know",
+    "minutes": 3,
+    "excerpt": "<p>I have been reading Medium for more than 6 years, and it has had a very positive impact on my career. I’ve read numerous tech articles and tutorials which later were successfully applied, especially about Android development. Yeah, this is still my specialty. Throughout this time, I’ve encountered great articles that are well-structured and less polished ones but still with solid personal expertise. Unfortunately, the latter often go unnoticed and are challenging to read. That’s why I decided to write this article(not only to share my observation but also to improve my skills in technical and regular writing *<em>wink</em>).</p>"
+  },
+  "9b48875e6dd0": {
+    "url": "https://medium.com/@iRYO400/video-wizard-with-horizontalpager-exoplayer-jetpack-compose-9b48875e6dd0",
+    "title": "Video Wizard with HorizontalPager | ExoPlayer | Jetpack Compose",
+    "minutes": 4,
+    "excerpt": "<p>I have been working with a new version of HorizontalPager from Compose and recently implemented a video wizard. For playing video I used ExoPlayer. Here is what I've got:</p>\n<p>For April'23 there are two versions of HorizontalPager, one from accompanist and another from compose-1.4.X. I recommend you to choose the second, it's a newer and has flexible API.</p>"
+  },
+  "5758d1bebc19": {
+    "url": "https://medium.com/@iRYO400/my-migrating-to-google-play-billing-5-tech-tips-about-productdetails-5758d1bebc19",
+    "title": "My migrating to Google Play Billing 5, tech-tips about ProductDetails",
+    "minutes": 4,
+    "excerpt": "<p>Hi, there! In this article, I want to share the challenges I faced in the migration process and the ready-to-use solutions for them that I came up with. Billing5 has brought many changes, but I’ll focus on <strong>ProductDetails with subscriptions, </strong>which replaced deprecated<strong> SkuDetails. </strong>The rest of the changes you can find out from the links at the end of the article or in my next article if I find something else.</p>\n<p><em>The deadline to migrate to Billing4 was August’22(for new apps) and November’22(for existing ones), so I assume the same is for Billing5.</em></p>"
+  },
+  "b72ac8c58fcd": {
+    "url": "https://medium.com/@iRYO400/how-to-make-an-image-draw-outside-of-its-boundaries-in-jetpack-compose-b72ac8c58fcd",
+    "title": "How to force an image to draw outside of its boundaries in Jetpack Compose",
+    "minutes": 2,
+    "excerpt": "<p>Imagine a case when you need to put an image as in the picture below.</p>\n<figure><img src=\"https://cdn-images-1.medium.com/max/301/1*MeRXFvMJEqvf69baIUqIKg.png\" alt=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>Looks clean, isn't?</figcaption></figure>\n<p>And not like this:</p>"
+  },
+  "3244ef142047": {
+    "url": "https://medium.com/@iRYO400/set-targetsdk-minsdk-using-versioncatalogs-in-gradle-7-4-3244ef142047",
+    "title": "Set targetSdk, minSdk using versionCatalogs in Gradle 7.4+",
+    "minutes": 1,
+    "excerpt": "<p>In short, use <strong><em>cast to Integer</em></strong> in Groovy or <strong><em>parse toInt()</em></strong> in Kotlin</p>"
+  },
+  "47a72a32cb64": {
+    "url": "https://medium.com/@iRYO400/viewmodel-vs-remembersaveable-47a72a32cb64",
+    "title": "ViewModel vs rememberSaveable",
+    "minutes": 1,
+    "excerpt": "<p>It’s the question I asked Google, while was passing one of their trainings they’re advertising last month. It’s called <a href=\"https://android-developers.googleblog.com/2022/09/learn-jetpack-compose-at-compose-camp-near-you.html\">Compose Camp</a>. Where you can earn badges( the reason I attempted) and certificate.</p>\n<p>Back to the topic. I didn’t find anything clear about it. So made a <em>quick overview</em>, not deep research, leaving it to someone else.</p>\n<p>Here is the question from one of the quiz:</p>\n<figure><img src=\"https://cdn-images-1.medium.com/max/1024/1*OvRkDFL2DyBm-dz76sWOvw.png\" alt=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>Sorry for the spoiler</figcaption></figure>\n<p>What is <strong>rememberSaveable</strong> according to<a href=\"https://developer.android.com/reference/kotlin/androidx/compose/runtime/saveable/package-summary#rememberSaveable(kotlin.Array,androidx.compose.runtime.saveable.Saver,kotlin.String,kotlin.Function0)\"> the docs</a>:</p>\n<blockquote>It behaves similarly to <a href=\"https://developer.android.com/reference/kotlin/androidx/compose/runtime/package-summary#remember(kotlin.Function0)\">remember</a>, but the stored value will survive the activity or process recreation using the saved instance state mechanism (for example it happens when the screen is rotated in the Android application).</blockquote>"
+  }
+}

@@ -1,0 +1,23 @@
+{{- /* {{< figure src="2.png" caption="…" width="50%" height="50%" >}}: src is a file of the page bundle, or a URL. */ -}}
+{{- $src := .Get "src" -}}
+{{- $caption := .Get "caption" -}}
+{{- $alt := .Get "alt" | default ($caption | plainify) | default "" -}}
+{{- $style := "" -}}
+{{- with .Get "width" }}{{ $style = printf "max-width:%s" (cond (findRE `^\d+$` .) (printf "%spx" .) .) }}{{ end -}}
+{{- $res := .Page.Resources.GetMatch $src -}}
+{{- /* a bundle file lost with the old blog: skip it rather than show a broken image */ -}}
+{{- if or $res (findRE `^(https?:)?//|^/` $src) -}}
+<figure>
+{{- if $res -}}
+  {{- if eq $res.MediaType.MainType "image" -}}
+    {{- $isRaster := and (ne $res.MediaType.SubType "svg+xml") (ne $res.MediaType.SubType "svg") -}}
+<img src="{{ $res.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ if $isRaster }} width="{{ $res.Width }}" height="{{ $res.Height }}"{{ end }}{{ with $style }} style="{{ . | safeCSS }}"{{ end }}>
+  {{- else -}}
+<img src="{{ $res.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with $style }} style="{{ . | safeCSS }}"{{ end }}>
+  {{- end -}}
+{{- else -}}
+<img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with $style }} style="{{ . | safeCSS }}"{{ end }}>
+{{- end -}}
+{{- with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
+</figure>
+{{- end -}}

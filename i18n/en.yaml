@@ -1,0 +1,26 @@
+# Strings of the landing template. Page text lives in each page's front matter.
+projects: Projects
+language: Language
+help: Help
+gp_small: Get it on
+as_small: Download on the
+hint_ios: You are on iOS, so the App Store comes first.
+hint_android: You are on Android, so Google Play comes first.
+privacy: Privacy
+support: Support
+delete_data: Delete data
+made_by: Made by Akbolat Sadvakassov
+stack: Built with
+# The Pocket Armory policy, support and delete-data pages hold both languages; this jumps to the visitor's.
+doc_anchor: ""
+# Rarity names as the game shows them, and gun classes for the chest strip.
+r_common: Common
+r_rare: Rare
+r_epic: Epic
+r_legendary: Legendary
+cls_pistol: Pistol
+cls_smg: SMG
+cls_rifle: Rifle
+cls_sniper: Sniper rifle
+cls_shotgun: Shotgun
+cls_heavy: Machine gun

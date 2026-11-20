@@ -1,0 +1,25 @@
+/* Project art for the home plates. Brand colours belong to each project and stay the same in light and dark themes. */
+
+.art { position: absolute; inset: 0; overflow: hidden; }
+.art img, .art svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- low plates on the home page ----------
+   Icon and title sit on the left under dark glass, so the picture keeps its subject in the right third.
+   The plate picture is a size container 2.2 plates tall: 1cqh is about 2.2% of the plate height. */
+
+/* Pocket Armory: the portrait poster stands on the right; its sky and floor carry on to the left */
+.plate .art--pocket-armory { background: linear-gradient(180deg, #2e5b84 0%, #3b72a1 22%, #4d8bb6 45%, #4a89b8 62%, #468dbc 100%); }
+.plate .art--pocket-armory::before {
+  content: ""; position: absolute; left: -40%; right: -40%; top: 62%; height: 50%;
+  background-image: linear-gradient(rgb(255 255 255 / .3) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .3) 1px, transparent 1px);
+  background-size: 6cqh 6cqh; transform: perspective(36cqh) rotateX(62deg); transform-origin: 50% 0;
+}
+.plate .art--pocket-armory img {
+  position: absolute; top: 18%; right: 3%; width: auto; height: 64%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 80%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 22%, #000 80%, transparent);
+}
+
+@media (max-width: 639px) {
+  .plate .art--pocket-armory img { top: 21%; height: 58%; right: -6%; }
+}

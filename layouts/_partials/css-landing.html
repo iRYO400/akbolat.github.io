@@ -1,0 +1,5 @@
+{{- $files := slice "css/landing-fonts.css" "css/landing.css" (.Params.landing_css | default "css/pocket-armory-landing.css") -}}
+{{- $list := slice -}}
+{{- range $files }}{{ $list = $list | append (resources.Get .) }}{{ end -}}
+{{- $css := $list | resources.Concat "css/landing.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

@@ -1,0 +1,4 @@
+{{- $same := slice -}}
+{{- range hugo.Data.links }}{{ $same = $same | append .url }}{{ end -}}
+{{- $p := dict "@context" "https://schema.org" "@type" "Person" "name" site.Params.author "jobTitle" site.Params.jobTitle "url" site.Home.Permalink "description" site.Params.description "sameAs" $same -}}
+<script type="application/ld+json">{{ $p | jsonify | safeJS }}</script>

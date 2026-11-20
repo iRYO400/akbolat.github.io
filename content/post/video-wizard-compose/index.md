@@ -1,6 +1,6 @@
 ---
 title: Video Wizard with HorizontalPager | ExoPlayer | Jetpack Compose
-summary: Usefull code snippeds when Compose HorizontalPager
+summary: Useful code snippets for Compose HorizontalPager
 date: 2023-04-19
 authors:
   - admin

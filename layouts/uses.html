@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="page">
+{{ partial "header.html" . }}
+<main>
+<section class="phead">
+  <h1 class="ptitle">{{ .Title }}</h1>
+  <div class="plede">{{ .Content }}</div>
+</section>
+{{- range .Params.groups }}
+<section class="sect"><div class="sect-head"><h2>{{ .title }}</h2>{{ with .note }}<p>{{ . }}</p>{{ end }}</div>
+<dl class="uses">{{ range .items }}<div><dt>{{ .name }}</dt>{{ with .note }}<dd>{{ . }}</dd>{{ end }}</div>{{ end }}</dl></section>
+{{- end }}
+</main>
+{{ partial "footer.html" . }}
+</div>
+{{ end }}

@@ -1,0 +1,7 @@
+{{- /* Posts newest first, then one closing row for the archive section. */ -}}
+<ul class="posts">
+{{- range (where site.RegularPages "Section" "post").ByDate.Reverse }}{{ if not (strings.HasPrefix .Path "/post/legacy/") }}{{ partial "post-row.html" . }}{{ end }}{{ end }}
+{{- with site.GetPage "/post/legacy" }}
+<li><a href="{{ .RelPermalink }}"><time datetime="{{ .Params.when }}">{{ .Params.when }}</time><h3>{{ .Title }}</h3>{{ with .Params.summary }}<p>{{ . }}</p>{{ end }}{{ with .Params.label }}<div class="tags">{{ . }}</div>{{ end }}</a></li>
+{{- end }}
+</ul>
