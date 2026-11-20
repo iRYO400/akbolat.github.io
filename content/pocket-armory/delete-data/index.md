@@ -3,7 +3,7 @@ title: Delete your Pocket Armory data
 description: How to ask for your Pocket Armory data to be deleted.
 ---
 
-Developer: Akbolat Sadvakassov (Lootonomics), Almaty, Kazakhstan. App: Pocket Armory: Loot&Shoot (Android and iOS).
+Developer: Akbolat Sadvakassov (Lootonomics), Kazakhstan. App: Pocket Armory: Loot&Shoot (Android and iOS).
 
 [Русская версия — ниже.](#ru)
 

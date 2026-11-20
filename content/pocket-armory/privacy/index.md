@@ -9,7 +9,7 @@ description: What data Pocket Armory processes and why, and how to delete it.
 
 Effective date: 11 October 2026
 
-This policy explains what data the mobile game Pocket Armory: Loot&Shoot (Android and iOS) processes and why. The developer and data controller is Akbolat Sadvakassov (Lootonomics), Almaty, Kazakhstan. Contact: <whitesteel400@gmail.com>.
+This policy explains what data the mobile game Pocket Armory: Loot&Shoot (Android and iOS) processes and why. The developer and data controller is Akbolat Sadvakassov (Lootonomics), Kazakhstan. Contact: <whitesteel400@gmail.com>.
 
 ## Delete your data
 
@@ -77,7 +77,7 @@ We may update this policy. When we do, the effective date at the top changes.
 
 ## 12. Contact
 
-Akbolat Sadvakassov (Lootonomics), Almaty, Kazakhstan. Email: <whitesteel400@gmail.com>.
+Akbolat Sadvakassov (Lootonomics), Kazakhstan. Email: <whitesteel400@gmail.com>.
 
 {{< /lang >}}
 
@@ -87,7 +87,7 @@ Akbolat Sadvakassov (Lootonomics), Almaty, Kazakhstan. Email: <whitesteel400@gma
 
 Дата вступления в силу: 11 октября 2026 г.
 
-Эта политика объясняет, какие данные обрабатывает мобильная игра Pocket Armory: Loot&Shoot (Android и iOS) и зачем. Разработчик и оператор данных — Акболат Садвакасов (Lootonomics), Алматы, Казахстан. Контакт: <whitesteel400@gmail.com>.
+Эта политика объясняет, какие данные обрабатывает мобильная игра Pocket Armory: Loot&Shoot (Android и iOS) и зачем. Разработчик и оператор данных — Akbolat Sadvakassov (Lootonomics), Казахстан. Контакт: <whitesteel400@gmail.com>.
 
 ## Как удалить свои данные
 
@@ -155,6 +155,6 @@ Akbolat Sadvakassov (Lootonomics), Almaty, Kazakhstan. Email: <whitesteel400@gma
 
 ## 12. Контакты
 
-Акболат Садвакасов (Lootonomics), Алматы, Казахстан. Эл. почта: <whitesteel400@gmail.com>.
+Akbolat Sadvakassov (Lootonomics), Казахстан. Эл. почта: <whitesteel400@gmail.com>.
 
 {{< /lang >}}
