@@ -1,0 +1,5 @@
+{{- /* A tap on a store badge sends Google Analytics a store_click event: which store and which language page.
+       gtag exists only in a production build. `store` and `page_lang` show up in GA reports once they are
+       added as event-scoped custom dimensions (Admin → Custom definitions). */ -}}
+<script>document.querySelectorAll('.store').forEach(function(a){a.addEventListener('click',function(){
+if(window.gtag)gtag('event','store_click',{store:a.dataset.os==='ios'?'app_store':'google_play',page_lang:document.documentElement.lang})})});</script>

@@ -9,12 +9,13 @@
     {{- /* The stores' own badges in the page's language, all 52 px tall. The App Store badge is an SVG, so its
            width comes from the viewBox. */}}
     {{- $lang := site.Language.Lang }}
+    {{- $links := partial "store-links.html" (dict "page" $ "medium" "badge") }}
     <div class="get"><div class="ctas">
       {{- with resources.Get (printf "images/badges/google-play-%s.webp" $lang) }}
-      <a class="store" data-os="android" href="{{ $.Params.play_url }}"><img src="{{ .RelPermalink }}" alt="{{ T "gp_alt" }}" width="{{ math.Round (div (mul 52.0 .Width) .Height) }}" height="52"></a>
+      <a class="store" data-os="android" href="{{ $links.play }}"><img src="{{ .RelPermalink }}" alt="{{ T "gp_alt" }}" width="{{ math.Round (div (mul 52.0 .Width) .Height) }}" height="52"></a>
       {{- end }}
       {{- with resources.Get (printf "images/badges/app-store-%s.svg" $lang) }}{{ $vb := index (findRESubmatch `viewBox="0 0 ([\d.]+) ([\d.]+)"` .Content 1) 0 }}
-      <a class="store" data-os="ios" href="{{ $.Params.app_store_url }}"><img src="{{ .RelPermalink }}" alt="{{ T "as_alt" }}" width="{{ math.Round (div (mul 52.0 (float (index $vb 1))) (float (index $vb 2))) }}" height="52"></a>
+      <a class="store" data-os="ios" href="{{ $links.ios }}"><img src="{{ .RelPermalink }}" alt="{{ T "as_alt" }}" width="{{ math.Round (div (mul 52.0 (float (index $vb 1))) (float (index $vb 2))) }}" height="52"></a>
       {{- end }}
     </div>
     <p class="os-hint" hidden data-ios="{{ T "hint_ios" }}" data-android="{{ T "hint_android" }}"></p>
@@ -39,5 +40,6 @@
 {{- end }}
 <footer class="foot"><div class="wrap"><span>{{ .Title }} · © {{ now.Year }} Akbolat Sadvakassov · <a href="/pocket-armory/privacy/{{ $doc }}">{{ T "privacy" }}</a> · <a href="/pocket-armory/support/{{ $doc }}">{{ T "support" }}</a> · <a href="/pocket-armory/delete-data/{{ $doc }}">{{ T "delete_data" }}</a></span><a href="/">{{ T "made_by" }} →</a></div></footer>
 {{ partial "store-pick.html" . }}
+{{ partial "store-events.html" . }}
 {{ partial "hero-stage.html" . }}
 {{ end }}

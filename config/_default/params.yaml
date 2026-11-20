@@ -7,5 +7,9 @@ twitter: iRYO400            # @handle for twitter:site
 
 googleAnalytics: G-05QEEFZ5HL   # rendered only in a production build
 
+# App Store Connect provider token (Analytics → Campaigns). Once set, the Pocket Armory landing's App Store links
+# carry a campaign token, so App Store Connect tells the badges from the QR code (layouts/_partials/store-links.html).
+appStoreProviderToken: ""
+
 # Tags that are not shown next to a post (the label of a mirror, or too generic).
 hiddenTags: [Medium, Android, Jetpack, Google Play, Legacy]

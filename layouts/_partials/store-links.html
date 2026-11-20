@@ -1,0 +1,10 @@
+{{- /* The landing's store links, tagged with how the visitor got there (`medium`: badge or qr), so the stores'
+       own reports tell the badges from the QR code. Google Play reads UTM tags from `referrer` (Play Console,
+       acquisition reports). The App Store reads the campaign token `ct` only next to the provider token `pt`
+       from App Store Connect, so its link stays untagged until params.appStoreProviderToken is set. */ -}}
+{{- $p := .page }}
+{{- $ref := printf "utm_source=sadvakassov.com&utm_medium=%s&utm_campaign=landing" .medium }}
+{{- $play := printf "%s&referrer=%s" $p.Params.play_url (urlquery $ref) }}
+{{- $ios := $p.Params.app_store_url }}
+{{- with site.Params.appStoreProviderToken }}{{ $ios = printf "%s?pt=%s&ct=%s&mt=8" $ios . $.medium }}{{ end }}
+{{- return (dict "play" $play "ios" $ios) }}

@@ -2,6 +2,7 @@
        Google Play, anything else to the landing. Kept out of lists, the sitemap and search. It defines no
        blocks, so baseof.html does not wrap it. */ -}}
 {{- $l := .Parent }}
+{{- $s := partial "store-links.html" (dict "page" $l "medium" "qr") }}
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <title>{{ $l.Title }}</title>
 <script>(function(){var ua=navigator.userAgent||'';
 var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
-location.replace(ios?{{ $l.Params.app_store_url }}:/Android/i.test(ua)?{{ $l.Params.play_url }}:{{ $l.RelPermalink }})})();</script>
+location.replace(ios?{{ $s.ios }}:/Android/i.test(ua)?{{ $s.play }}:{{ $l.RelPermalink }})})();</script>
 </head>
-<body><p><a href="{{ $l.Params.play_url }}">Google Play</a> · <a href="{{ $l.Params.app_store_url }}">App Store</a> · <a href="{{ $l.RelPermalink }}">{{ $l.Title }}</a></p></body>
+<body><p><a href="{{ $s.play }}">Google Play</a> · <a href="{{ $s.ios }}">App Store</a> · <a href="{{ $l.RelPermalink }}">{{ $l.Title }}</a></p></body>
 </html>
