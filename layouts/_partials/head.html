@@ -62,8 +62,13 @@ if(c&&m[c]!==location.pathname)location.replace(m[c]+location.search+location.ha
 {{- with site.Home.OutputFormats.Get "RSS" }}
 <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">
 {{- end }}
-{{- with resources.Get "media/icon.png" }}
+{{- /* The site's "A"; a project landing shows its own app icon instead. 96 px is for search results, which
+       want a multiple of 48. static/favicon.ico is for clients that never read these tags. */}}
+{{- $icon := resources.Get "media/icon.png" }}
+{{- if $isLanding }}{{ with .Params.icon }}{{ with resources.Get . }}{{ $icon = . }}{{ end }}{{ end }}{{ end }}
+{{- with $icon }}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ (.Fill "32x32 png").RelPermalink }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ (.Fill "96x96 png").RelPermalink }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ (.Fill "180x180 png").RelPermalink }}">
 {{- end }}
 {{- if $isLanding }}
